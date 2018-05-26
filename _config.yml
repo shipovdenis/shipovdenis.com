@@ -1,5 +1,6 @@
 # Config
 # ========================================================================================
+destination:     ./docs
 
 # IMPORTANT: Set the URL of your site.
 # Set to https://<username>.github.io when hosting on GitHub Pages

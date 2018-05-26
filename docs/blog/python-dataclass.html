@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ru"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
+-->
+
+
+
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+  
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Классы данных в Python | shipovdenis</title>
+<meta name="generator" content="Jekyll v3.8.2" />
+<meta property="og:title" content="Классы данных в Python" />
+<meta name="author" content="Denis Shipov" />
+<meta property="og:locale" content="ru_RU" />
+<meta name="description" content="Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных." />
+<meta property="og:description" content="Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных." />
+<link rel="canonical" href="http://localhost:4000/blog/python-dataclass" />
+<meta property="og:url" content="http://localhost:4000/blog/python-dataclass" />
+<meta property="og:site_name" content="shipovdenis" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-05-20T00:00:00+03:00" />
+<script type="application/ld+json">
+{"description":"Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных.","author":{"@type":"Person","name":"Denis Shipov"},"@type":"BlogPosting","url":"http://localhost:4000/blog/python-dataclass","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/icons/icon.png"},"name":"Denis Shipov"},"headline":"Классы данных в Python","dateModified":"2018-05-20T00:00:00+03:00","datePublished":"2018-05-20T00:00:00+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/python-dataclass"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="">
+  
+
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="shipovdenis">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<meta name="application-name" content="shipovdenis">
+<meta name="msapplication-config" content="/assets/ieconfig.xml">
+
+
+<meta name="theme-color" content="#75b5aa">
+
+
+<meta name="generator" content="Hydejack v7.5.1">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="shipovdenis" />
+
+
+
+<link rel="alternate" href="http://localhost:4000/blog/python-dataclass" hreflang="ru-ru">
+
+<link rel="shortcut icon" href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon.png">
+
+<link rel="manifest" href="/assets/manifest.json">
+
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+
+
+
+
+<link id="_katexJS"  rel="dns-prefetch" href="/assets/bower_components/katex/dist/katex.min.js">
+<link id="_katexCSS" rel="dns-prefetch" href="/assets/bower_components/katex/dist/katex.min.css">
+
+<script>
+  function stdOnEnd(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function ieOnEnd(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}window.setRelStylesheet=function(n){function e(){this.rel="stylesheet"}var o=document.getElementById(n);o.addEventListener?o.addEventListener("load",e,!1):o.onload=e},window._loaded=!1,window.loadJSDeferred=function(n,e){function o(){window._loaded=!0;var o=document.createElement("script");o.src=n,e&&(("onload"in o?stdOnEnd:ieOnEnd)(o,e),o.onload||stdOnEnd(o,e));var t=document.scripts[0];t.parentNode.insertBefore(o,t)}window._loaded?o():window.addEventListener?window.addEventListener("load",o,!1):window.onload=o};
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+
+  window._noPushState = false;
+  window._noDrawer = false;
+</script>
+
+<!--[if gt IE 8]><!---->
+
+
+<script>
+  WebFontConfig = {
+    
+    google: {
+      families: ['Roboto+Slab:700','Noto+Sans:400,400i,700,700i']
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  };
+  (function(d) {
+    var wf = d.createElement('script'), s = d.scripts[0];
+    wf.src = "/assets/bower_components/webfontloader/webfontloader.js";
+    s.parentNode.insertBefore(wf, s);
+  }(document));
+</script>
+<!--<![endif]-->
+
+<noscript>
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i">
+    <style>
+      html { font-family: Noto Sans, Helvetica, Arial, sans-serif }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: Roboto Slab, Helvetica, Arial, sans-serif }
+    </style>
+  
+
+  <link rel="stylesheet" href="/assets/icomoon/style.css">
+</noscript>
+
+<!--[if gt IE 8]><!---->
+
+
+
+  <link rel="stylesheet" href="/assets/css/hydejack-7.5.1.css">
+
+
+
+<style id="_pageStyle">
+
+.content a:not(.btn){color:#75b5aa;border-color:rgba(117,181,170,0.2)}.content a:not(.btn):hover{border-color:#75b5aa}:focus{outline-color:#75b5aa}.btn-primary{color:#fff;background-color:#75b5aa;border-color:#75b5aa}.btn-primary:focus,.btn-primary.focus{box-shadow:0 0 0 3px rgba(117,181,170,0.5)}.btn-primary:hover,.btn-primary.hover{color:#fff;background-color:#5ca89b;border-color:#5ca89b}.btn-primary:disabled,.btn-primary.disabled{color:#fff;background-color:#75b5aa;border-color:#75b5aa}.btn-primary:active,.btn-primary.active{color:#fff;background-color:#5ca89b;border-color:#5ca89b}::selection{color:#fff;background:#75b5aa}::-moz-selection{color:#fff;background:#75b5aa}
+
+</style>
+
+<!--<![endif]-->
+
+
+
+
+</head>
+
+<body>
+  <div class="navbar fixed-top">
+  <div class="content">
+    <div class="nav-btn-bar">
+      <span class="sr-only">Jump to:</span>
+      <a id="_menu" class="nav-btn no-hover" href="#_navigation">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<hy-push-state>
+  <main
+    id="_main"
+    class="content fade-in layout-post"
+    role="main"
+    data-color="#75b5aa"
+    data-theme-color=""
+    
+      data-image="none"
+      
+    
+    >
+    
+
+
+<article id="post-blog-data-class-in-python" class="page post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Классы данных в Python
+      
+    </h1>
+
+    <p class="post-date heading">
+      
+      <time datetime="2018-05-20T00:00:00+03:00">20.05.2018</time>
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+    </p>
+
+    
+
+
+
+  
+    <p class="message" >
+      Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <p>Одной из интересных особенностей, появившихся в <strong>Python</strong> с версии <strong>3.7</strong>, является <strong>класс данных</strong>(<strong>data class</strong>). <strong>Класс данных</strong> — это класс, как правило содержащий только данные, но в действительности нет никаких ограничений. Он создается с помощью нового декоратора <strong>@dataclass</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">DataClassCard</span><span class="p">:</span>
+    <span class="n">rank</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">suit</span><span class="p">:</span> <span class="nb">str</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Все примеры в этой статье будут корректно работать только в <strong>Python 3.7</strong> и выше.</p>
+</blockquote>
+
+<p><strong>Классы данных</strong> уже обладают реализованной базовой функциональностью, например, вы можете создавать экземпляры, печатать, сравнивать их между собой, не прилагая для этого никаких усилий:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">=</span> <span class="n">DataClassCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'Hearts'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span><span class="o">.</span><span class="n">rank</span>
+<span class="s">'Q'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span>
+<span class="n">DataClassCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'Q'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'Hearts'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">==</span> <span class="n">DataClassCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'Hearts'</span><span class="p">)</span>
+<span class="bp">True</span>
+</code></pre></div></div>
+
+<p>Сравним с обычными классами. Минимальная реализация выглядит следующим образом:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RegularCard</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">suit</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">suit</span> <span class="o">=</span> <span class="n">suit</span>
+</code></pre></div></div>
+
+<p>В таком простом примере разница в количестве написанного кода незначительная, однако сразу видны потенциальные проблемы: переменные <strong>rank</strong> и <strong>suit</strong> повторяются по три раза только для инициализации экземпляров объекта. Более того, если попытаться использовать этот класс, то представление объекта не особо информативно и почему-то один экземпляр <strong>queen_of_hearts</strong> не равен другому:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">=</span> <span class="n">RegularCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'Hearts'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span><span class="o">.</span><span class="n">rank</span>
+<span class="s">'Q'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span>
+<span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">RegularCard</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fb6eee35d30</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">==</span> <span class="n">RegularCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'Hearts'</span><span class="p">)</span>
+<span class="bp">False</span>
+</code></pre></div></div>
+
+<p>Понятно, что декоратор <strong>@dataclass</strong> выполняет определенные действия “за кулисами”.
+<strong>Класс данных</strong> уже реализует метод <strong>__repr__()</strong> для обеспечения хорошего строкого представления и метод <strong>__eq__()</strong>, который выполняет базовые сравнения объектов. Чтобы класс <strong>RegularCard</strong> обладал схожей функциональностью, нужно добавить это методы явно:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RegularCard</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">suit</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">suit</span> <span class="o">=</span> <span class="n">suit</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="s">'{self.__class__.__name__}'</span>
+                <span class="n">f</span><span class="s">'(rank={self.rank!r}, suit={self.suit!r})'</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">__class__</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">NotImplemented</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">suit</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">rank</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">suit</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Эта статья показывает какие преимущества дают <strong>классы данных</strong>, помимо описанных выше. Мы рассмотрим:</p>
+
+<ul>
+  <li>Как устанавливать значения по умолчанию для полей объекта?</li>
+  <li>Как упорядочивать множество объектов?</li>
+  <li>Как представлять неизменяемые данные?</li>
+  <li>Как работает наследование в <strong>классах данных</strong>?</li>
+</ul>
+
+<p>Скоро мы погрузимся в эти особенности новой функциональности <strong>Python</strong>. Однако, вам может показаться, что вы уже видели что-то подобное раньше.</p>
+
+<h1 id="Существующие-альтернативы-классам-данных">Существующие альтернативы классам данных</h1>
+
+<p>Для простых структур данных вы, вероятно, уже использовали кортежи или словари:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'Hearts'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">'rank'</span><span class="p">:</span> <span class="s">'Q'</span><span class="p">,</span> <span class="s">'suit'</span><span class="p">:</span> <span class="s">'Hearts'</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>Это работает, но накладывает большую ответственность на программиста:</p>
+
+<ul>
+  <li>
+    <p>Нужно помнить, структуру какой сущности представляют <strong>queen_of_hearts_tuple</strong> и <strong>queen_of_hearts_dict</strong>.</p>
+  </li>
+  <li>
+    <p>Для <strong>queen_of_hearts_tuple</strong> нужно помнить порядок следования атрибутов. 
+Написав <strong>queen_of_hearts_tuple = (‘Hearts’, ‘Q’)</strong> мы явно получим не то, что хотели, однако сообщение об ошибке не возникнет.</p>
+  </li>
+  <li>
+    <p>При использовании словарей нужно следить за согласованностью имен атрибутов. Например, <strong>queen_of_hearts_dict = {‘value’: ‘A’, ‘suit’: ‘Spades’}</strong> не будет работать должным образом, так как впоследствии мы ожидаем поле <strong>rank</strong>, а не <strong>value</strong>.</p>
+  </li>
+</ul>
+
+<p>Более того, использование таких структур далеко от идеала с точки зрения чистоты и информативности кода:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c"># Доступ по индексу, а не имени</span>
+<span class="s">'Q'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts_dict</span><span class="p">[</span><span class="s">'suit'</span><span class="p">]</span>  <span class="c"># Хотелось бы .suit</span>
+<span class="s">'Hearts'</span>
+</code></pre></div></div>
+
+<p>Лучшей альтернативой является использование <strong>именованных кортежей</strong>(<strong>namedtuple</strong>). Этот подход широко используется для создания небольших читаемых структур данных. Класс выше с использованием <strong>namedtuple</strong> создается следующим образом:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="n">NamedTupleCard</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">'NamedTupleCard'</span><span class="p">,</span> <span class="p">[</span><span class="s">'rank'</span><span class="p">,</span> <span class="s">'suit'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>Такое определение <strong>NamedTupleCard</strong> дает такой же результат как и класс <strong>DataClassCard</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">=</span> <span class="n">NamedTupleCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'Hearts'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span><span class="o">.</span><span class="n">rank</span>
+<span class="s">'Q'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span>
+<span class="n">NamedTupleCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'Q'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'Hearts'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">==</span> <span class="n">NamedTupleCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'Hearts'</span><span class="p">)</span>
+<span class="bp">True</span>
+</code></pre></div></div>
+
+<p>Так зачем тогда вообще возиться с классами данных? Во первых, классы данных имеют более широкие возможности, чем были продемонстрированы на данный момент. В тоже время <strong>namedtuple</strong> обладает и другими особенностями, которые не всегда желательны. По своей структуре <strong>namedtuple</strong> является обычным кортежом. Это можно увидеть в сравнении:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">==</span> <span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'Hearts'</span><span class="p">)</span>
+<span class="bp">True</span>
+</code></pre></div></div>
+
+<p>На первый взгляд выглядит хорошо, однако недостаточная осведомленность о собственном типе может привести с неприятным ошибкам, которые нелегко отследить. Более того, будут легко проведено сравнение между разными именованными кортежами:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">Person</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">'Person'</span><span class="p">,</span> <span class="p">[</span><span class="s">'first_initial'</span><span class="p">,</span> <span class="s">'last_name'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">=</span> <span class="n">NamedTupleCard</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'Spades'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">==</span> <span class="n">Person</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'Spades'</span><span class="p">)</span>
+<span class="bp">True</span>
+</code></pre></div></div>
+
+<p>В именнованных кортежах сложно определять значения по-умолчанию, и по своей природе они являются неизменяемыми структурами данных, что в одних случаях просто превосходно, но в других сказывается недостаток гибкости:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">card</span> <span class="o">=</span> <span class="n">NamedTupleCard</span><span class="p">(</span><span class="s">'7'</span><span class="p">,</span> <span class="s">'Diamonds'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">card</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="s">'9'</span>
+<span class="nb">AttributeError</span><span class="p">:</span> <span class="n">can</span><span class="s">'t set attribute</span><span class="err">
+</span></code></pre></div></div>
+
+<p>Классы данных полностью не заменяют все способы применения именованных кортежей. Если нужна структура данных, которая должна вести себя как кортеж, то нет никаких причин не использовать <strong>namedtuple</strong>.</p>
+
+<p>Другой альтернативой и одним из вдохновителей для классов данных является библиотека <strong>attrs</strong>. Ее можно установить с помощью <strong>pip</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>attrs
+</code></pre></div></div>
+
+<p>и реализовать наш класс следующим образом:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">attr</span>
+
+<span class="nd">@attr.s</span>
+<span class="k">class</span> <span class="nc">AttrsCard</span><span class="p">:</span>
+    <span class="n">rank</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">suit</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Библиотека <strong>attrs</strong> содержит функциональность, которой не обладают классы данных, например, валидаторы и конвертеры. Более того, <strong>attrs</strong> поддерживает Python 2.7 и Python 3.4 и выше. Но все-таки это не часть стандартной библиотеки и придется добавлять лишнюю зависимость в проект.</p>
+
+<p>Помимо обычных и именованных кортежей, словарей и <strong>attrs</strong> существует множество других средств, предоставляющих схожую функциональность, например, <strong>typing.NamedTuple</strong>, <strong>namedlist</strong>, <strong>attrdict</strong>, <strong>plumber</strong>, <strong>fields</strong>. И нужно смотреть в каждом конкретном случае, какой из них подойдет лучше всего для стоящей задачи.</p>
+
+<h1 id="Основы-классов-данных">Основы классов данных</h1>
+
+  
+</article>
+
+
+<hr class="dingbat related" />
+
+
+
+
+
+    
+
+
+    <footer role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2018. Все права защищены.
+</small></p>
+  
+  
+  <!-- <p><small>Powered by <a class="external" href="https://qwtel.com/hydejack/">Hydejack</a> v<span id="_version">7.5.1</span></small></p> -->
+  <hr class="sr-only"/>
+</footer>
+
+  </main>
+  <hy-drawer>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+    <div class="sidebar-bg " style="background-color:#75b5aa;"></div>
+
+    <div class="sidebar-sticky">
+      <div class="sidebar-about">
+        <h2 class="h1"><a href="/">shipovdenis</a></h2>
+        
+        
+          <p class="">
+            Senior Python Developer<br />Saint Petersburg, Russia
+
+          </p>
+        
+      </div>
+
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+  
+  
+  
+</ul>
+
+      </nav>
+
+      
+
+      <!-- <div class="sidebar-social">
+        <span class="sr-only">Social:</span>
+<ul>
+  
+
+  
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://twitter.com/<username>" title="Twitter" class="no-mark-external">
+    <span class="icon-twitter"></span>
+    <span class="sr-only">Twitter</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/<username>" title="GitHub" class="no-mark-external">
+    <span class="icon-github"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+</ul>
+
+      </div> -->
+    </div>
+  </header>
+</hy-drawer>
+
+</hy-push-state>
+
+
+  
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack-7.5.1.js');</script>
+  
+  <!--<![endif]-->
+
+
+
+  
+<hr class="sr-only"/>
+<h2 class="sr-only">Templates (for web app):</h2>
+
+<template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+<template id="_loading-template">
+  <div class="loading">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+<template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+<template id="_back-template">
+  <a id="_back" class="back nav-btn no-hover">
+    <span class="sr-only">Back</span>
+    <span class="icon-arrow-left2"></span>
+  </a>
+</template>
+
+<template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="icon-link"></span>
+  </a>
+</template>
+
+
+
+</body>
+</html>
