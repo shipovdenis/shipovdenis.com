@@ -29,15 +29,15 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <meta property="og:title" content="Классы данных в Python" />
 <meta name="author" content="Denis Shipov" />
 <meta property="og:locale" content="ru_RU" />
-<meta name="description" content="Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных." />
-<meta property="og:description" content="Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных." />
+<meta name="description" content="Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных. Определение значений по-умолчанию. Указание типов данных. Расширение с помощью методов." />
+<meta property="og:description" content="Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных. Определение значений по-умолчанию. Указание типов данных. Расширение с помощью методов." />
 <link rel="canonical" href="http://localhost:4000/blog/python-dataclass" />
 <meta property="og:url" content="http://localhost:4000/blog/python-dataclass" />
 <meta property="og:site_name" content="shipovdenis" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-05-20T00:00:00+03:00" />
 <script type="application/ld+json">
-{"description":"Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных.","author":{"@type":"Person","name":"Denis Shipov"},"@type":"BlogPosting","url":"http://localhost:4000/blog/python-dataclass","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/icons/icon.png"},"name":"Denis Shipov"},"headline":"Классы данных в Python","dateModified":"2018-05-20T00:00:00+03:00","datePublished":"2018-05-20T00:00:00+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/python-dataclass"},"@context":"http://schema.org"}</script>
+{"description":"Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных. Определение значений по-умолчанию. Указание типов данных. Расширение с помощью методов.","author":{"@type":"Person","name":"Denis Shipov"},"@type":"BlogPosting","url":"http://localhost:4000/blog/python-dataclass","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/icons/icon.png"},"name":"Denis Shipov"},"headline":"Классы данных в Python","dateModified":"2018-05-20T00:00:00+03:00","datePublished":"2018-05-20T00:00:00+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/python-dataclass"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -232,7 +232,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 
   
     <p class="message" >
-      Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных.
+      Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных. Определение значений по-умолчанию. Указание типов данных. Расширение с помощью методов.
 
     </p>
   
@@ -406,6 +406,583 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <p>Помимо обычных и именованных кортежей, словарей и <strong>attrs</strong> существует множество других средств, предоставляющих схожую функциональность, например, <strong>typing.NamedTuple</strong>, <strong>namedlist</strong>, <strong>attrdict</strong>, <strong>plumber</strong>, <strong>fields</strong>. И нужно смотреть в каждом конкретном случае, какой из них подойдет лучше всего для стоящей задачи.</p>
 
 <h1 id="Основы-классов-данных">Основы классов данных</h1>
+
+<p>Давайте теперь вернемся к новым классам данных. Для примера мы создадим класс <strong>Position</strong>, который будет представлять географические координаты с именем, широтой и долготой:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Position</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span>
+</code></pre></div></div>
+
+<p>Декоратор <strong>@dataclass</strong>, размещенный выше определения, делает этот объект классом данных. Под строкой <strong>class Position:</strong> мы размещаем нужные поля класса. Конструкция, состоящая из двоеточия, которое разделяет поле класса и указание его типа, является новой особенностью <strong>Python 3.6</strong> и называется <strong>аннотацией переменной</strong> (<strong>variable annotation</strong>). Мы скоро поговорим об этой конструкции и о том, почему определили типы данные как <strong>str</strong> и <strong>float</strong>.</p>
+
+<p>Этих нескольких строк достаточно, наш класс данных готов:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">Position</span><span class="p">(</span><span class="s">'Oslo'</span><span class="p">,</span> <span class="mf">10.8</span><span class="p">,</span> <span class="mf">59.9</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">Position</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Oslo'</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">10.8</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">59.9</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pos</span><span class="o">.</span><span class="n">lat</span>
+<span class="mf">59.9</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'{pos.name} is at {pos.lat}°N, {pos.lon}°E'</span><span class="p">)</span>
+<span class="n">Oslo</span> <span class="ow">is</span> <span class="n">at</span> <span class="mf">59.9</span><span class="err">°</span><span class="n">N</span><span class="p">,</span> <span class="mf">10.8</span><span class="err">°</span><span class="n">E</span>
+</code></pre></div></div>
+
+<p>Также можно создать класс данных подобно тому, как создаются именнованные кортежи. Следующий код равносилен определению класса <strong>Position</strong> выше:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">make_dataclass</span>
+
+<span class="n">Position</span> <span class="o">=</span> <span class="n">make_dataclass</span><span class="p">(</span><span class="s">'Position'</span><span class="p">,</span> <span class="p">[</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'lat'</span><span class="p">,</span> <span class="s">'lon'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>Класс данных — это обычный класс <strong>Python</strong>. Единственным отличием является набор уже реализованных методов, таких как <strong>.__init</strong>()<strong>, __.__repr</strong>()<strong>, and __.__eq</strong>()__.</p>
+
+<h2 id="Значения-по-умолчанию">Значения по-умолчанию</h2>
+
+<p>Очень просто добавить значения по-умолчанию для полей класса данных:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Position</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+</code></pre></div></div>
+
+<p>Это работает в точности так же, как определение значений в методе <strong>__init__()</strong> обычных классов:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">Position</span><span class="p">(</span><span class="s">'Null Island'</span><span class="p">)</span>
+<span class="n">Position</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Null Island'</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Position</span><span class="p">(</span><span class="s">'Greenwich'</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">51.8</span><span class="p">)</span>
+<span class="n">Position</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Greenwich'</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">51.8</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Position</span><span class="p">(</span><span class="s">'Vancouver'</span><span class="p">,</span> <span class="o">-</span><span class="mf">123.1</span><span class="p">,</span> <span class="mf">49.3</span><span class="p">)</span>
+<span class="n">Position</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Vancouver'</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">123.1</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">49.3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Немного позднее мы узнаем о <strong>default_factory</strong>, что позволит определять более сложные значения по-умолчанию.</p>
+
+<h2 id="Определение-типа-type-hints">Определение типа (Type Hints)</h2>
+
+<p>Классы данных поддерживают “из коробки” определения типов. С помощью конструкции <strong>name: str</strong> мы говорим, что поле <strong>name</strong> является строкой.</p>
+
+<p>Добавление определений типа к полям классов данных является обязательным условием. Если вы не хотите в точности указывать конкретный тип, то нужно использовать <strong>typing.Any</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">WithoutExplicitTypes</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">42</span>
+</code></pre></div></div>
+
+<p>Несмотря на обязательность указания типов данных, во время выполнения они не проверяются, и следующий код будет работать без проблем:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">Position</span><span class="p">(</span><span class="mf">3.14</span><span class="p">,</span> <span class="s">'pi day'</span><span class="p">,</span> <span class="mi">2018</span><span class="p">)</span>
+<span class="n">Position</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="mf">3.14</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="s">'pi day'</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mi">2018</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Python</strong> является языком с динамической типизацией, и для проверки согласованности типов нужно использовать библиотеки наподобие <strong>Mypy</strong>, которые будут постоянно отслеживать исходный код на корректность во время его написания.</p>
+
+<h2 id="Добавление-методов">Добавление методов</h2>
+
+<p>Методы в классы данных добавляются так же, как и в обычные классы. Для примера вычислим расстояние между двумя точками на планете с помощью формулы гаверсинусов. Добавим метод <strong>.distance_to()</strong> в класс:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">asin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">radians</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">sqrt</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Position</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">def</span> <span class="nf">distance_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="mi">6371</span>  <span class="c"># Earth radius in kilometers</span>
+        <span class="n">lam_1</span><span class="p">,</span> <span class="n">lam_2</span> <span class="o">=</span> <span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lon</span><span class="p">),</span> <span class="n">radians</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">lon</span><span class="p">)</span>
+        <span class="n">phi_1</span><span class="p">,</span> <span class="n">phi_2</span> <span class="o">=</span> <span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span> <span class="n">radians</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">lat</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">sin</span><span class="p">((</span><span class="n">phi_2</span> <span class="o">-</span> <span class="n">phi_1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+             <span class="o">+</span> <span class="n">cos</span><span class="p">(</span><span class="n">phi_1</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">phi_2</span><span class="p">)</span> <span class="o">*</span> <span class="n">sin</span><span class="p">((</span><span class="n">lam_2</span> <span class="o">-</span> <span class="n">lam_1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="n">asin</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Это работает именно так, как вы и ожидаете:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">oslo</span> <span class="o">=</span> <span class="n">Position</span><span class="p">(</span><span class="s">'Oslo'</span><span class="p">,</span> <span class="mf">10.8</span><span class="p">,</span> <span class="mf">59.9</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vancouver</span> <span class="o">=</span> <span class="n">Position</span><span class="p">(</span><span class="s">'Vancouver'</span><span class="p">,</span> <span class="o">-</span><span class="mf">123.1</span><span class="p">,</span> <span class="mf">49.3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">oslo</span><span class="o">.</span><span class="n">distance_to</span><span class="p">(</span><span class="n">vancouver</span><span class="p">)</span>
+<span class="mf">7181.7841229421165</span>
+</code></pre></div></div>
+
+<h1 id="Гибкие-классы-данных">Гибкие классы данных</h1>
+
+<p>На данный момент мы рассмотрели базовые возможности классов данных. Теперь посмотрим на более продвинутые возможности, такие как параметры декоратора <strong>@dataclass</strong> и функцию <strong>field()</strong>. Вместе они предоставляют больше контроля при создании классов данных.</p>
+
+<p>Вернемся к примеру с игральной картой из начала статьи и добавим класс колоды карт:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">PlayingCard</span><span class="p">:</span>
+    <span class="n">rank</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">suit</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Deck</span><span class="p">:</span>
+    <span class="n">cards</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PlayingCard</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Простая колода из двух карт может быть создана при помощи следующего кода:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">=</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'Hearts'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">=</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'Spades'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">two_cards</span> <span class="o">=</span> <span class="n">Deck</span><span class="p">([</span><span class="n">queen_of_hearts</span><span class="p">,</span> <span class="n">ace_of_spades</span><span class="p">])</span>
+<span class="n">Deck</span><span class="p">(</span><span class="n">cards</span><span class="o">=</span><span class="p">[</span><span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'Q'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'Hearts'</span><span class="p">),</span>
+            <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'Spades'</span><span class="p">)])</span>
+</code></pre></div></div>
+
+<h2 id="Расширенные-значения-по-умолчанию">Расширенные значения по-умолчанию</h2>
+
+<p>Теперь нам нужно определить значения по-умолчанию для класса <strong>Deck</strong>. Было бы удобно, если бы вызов <strong>Deck()</strong> создавал обычную колоду из 52 игральных карт. Для начала определим масти и ранги карт. Затем добавим функцию <strong>make_french_deck()</strong>, которая создаст список экземпляров класса <strong>PlayingCard</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">RANKS</span> <span class="o">=</span> <span class="s">'2 3 4 5 6 7 8 9 10 J Q K A'</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">SUITS</span> <span class="o">=</span> <span class="s">'♣ ♢ ♡ ♠'</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">make_french_deck</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">PlayingCard</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">SUITS</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">RANKS</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Для наглядности четыре масти мы определили, используя символы <strong>Юникода</strong>. Для упрощения сравнений карт в дальнейшем, ранги и масти карт перечислены в возрастающем порядке.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">make_french_deck</span><span class="p">()</span>
+<span class="p">[</span><span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'2'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♣'</span><span class="p">),</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'3'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♣'</span><span class="p">),</span> <span class="o">...</span>
+ <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'K'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">),</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<p>Теоретически теперь можно использовать эту функцию, чтобы определить значение по-умолчению для <strong>Deck.cards</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Deck</span><span class="p">:</span> <span class="c"># Не будет работать</span>
+    <span class="n">cards</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PlayingCard</span><span class="p">]</span> <span class="o">=</span> <span class="n">make_french_deck</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><strong>Не делайте так!</strong> Это один из наиболее распространенных анти-паттернов в <strong>Python</strong> — использование изменяемых значений по-умолчанию. Проблема в том, что все экземпляры класса <strong>Deck</strong> будут использовать один и тот же список значений как значение для поля <strong>cards</strong>. Это значит, что если карта была удалена из одной колоды, то она также будет удалена из всех существующих колод. В действительности, классы данных огорождают от этого, и код выше вызовет исключение <strong>ValueError</strong>.</p>
+
+<p>Вместо этого классы данных используют <strong>default_factory</strong> для обработки изменяемых значений по-умолчанию. Для использования <strong>default_factory</strong> нужно прибегнуть к спецификатору <strong>field()</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Deck</span><span class="p">:</span>
+    <span class="n">cards</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PlayingCard</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">make_french_deck</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Теперь можно создать полную колоду карт:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">Deck</span><span class="p">()</span>
+<span class="n">Deck</span><span class="p">(</span><span class="n">cards</span><span class="o">=</span><span class="p">[</span><span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'2'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♣'</span><span class="p">),</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'3'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♣'</span><span class="p">),</span> <span class="o">...</span>
+            <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'K'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">),</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">)])</span>
+</code></pre></div></div>
+
+<p>Спецификатор <strong>field()</strong> используется для настройки каждого поля класса данных в отдельности (мы увидим примеры этого ниже) и поддерживает:</p>
+
+<ul>
+  <li><strong>default</strong>: Значение по-умолчанию для поля</li>
+  <li><strong>default_factory</strong>: Функция, возвращающая начальное значение для поля</li>
+  <li><strong>init</strong>: Указание использовать поле в методе <strong>.__init</strong>()__ (по-умолчанию, <strong>True</strong>)</li>
+  <li><strong>repr</strong>: Указание использовать поле в функции <strong>repr</strong> (по-умолчанию, <strong>True</strong>)</li>
+  <li><strong>compare</strong>: Указание включать поле в сравнения (по-умолчанию, <strong>True</strong>)</li>
+  <li><strong>hash</strong>: Указание включать поле, когда вычисляется <strong>hash()</strong> (по-умолчанию, совпадает с <strong>compare</strong>)</li>
+  <li><strong>metadata</strong>: Отображение информации о поле</li>
+</ul>
+
+<p>В примере класса <strong>Position</strong> мы увидели, как добавлять простые значения по-умолчанию с помощью конструкции:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+</code></pre></div></div>
+
+<p>Однако, если нужно кастомизировать поле, например, чтобы скрыть его из вывода функции <strong>repr</strong>, следует использовать параметр <strong>default</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="n">__</span><span class="o">.</span>
+</code></pre></div></div>
+
+<p>Можно не определять одновременно <strong>default</strong> и <strong>default_factory</strong>.</p>
+
+<p>Параметр <strong>metadata</strong> не используется непосредственно классами данных, но он полезен для прикрепления информации о поле для себя и для других разработчиков. В классе <strong>Position</strong> можно было бы указать, что широта и долгота должны быть указаны в градусах:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Position</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s">'unit'</span><span class="p">:</span> <span class="s">'degrees'</span><span class="p">})</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s">'unit'</span><span class="p">:</span> <span class="s">'degrees'</span><span class="p">})</span>
+</code></pre></div></div>
+
+<p>Метаданные и другую информация о поле можно получить с помощью функции <strong>fields()</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">fields</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fields</span><span class="p">(</span><span class="n">Position</span><span class="p">)</span>
+<span class="p">(</span><span class="n">Field</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'name'</span><span class="p">,</span><span class="nb">type</span><span class="o">=&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">str</span><span class="s">'&gt;,...,metadata={}),</span><span class="err">
+</span><span class="s"> Field(name='</span><span class="n">lon</span><span class="s">',type=&lt;class '</span><span class="nb">float</span><span class="s">'&gt;,...,metadata={'</span><span class="n">unit</span><span class="s">': '</span><span class="n">degrees</span><span class="s">'}),</span><span class="err">
+</span><span class="s"> Field(name='</span><span class="n">lat</span><span class="s">',type=&lt;class '</span><span class="nb">float</span><span class="s">'&gt;,...,metadata={'</span><span class="n">unit</span><span class="s">': '</span><span class="n">degrees</span><span class="s">'}))</span><span class="err">
+</span><span class="s">&gt;&gt;&gt; lat_unit = fields(Position)[2].metadata['</span><span class="n">unit</span><span class="s">']</span><span class="err">
+</span><span class="s">&gt;&gt;&gt; lat_unit</span><span class="err">
+</span><span class="s">'</span><span class="n">degrees</span><span class="s">'</span><span class="err">
+</span></code></pre></div></div>
+
+<h2 id="Представление">Представление</h2>
+
+<p>Вспомним, как мы создавали колоду карт:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">Deck</span><span class="p">()</span>
+<span class="n">Deck</span><span class="p">(</span><span class="n">cards</span><span class="o">=</span><span class="p">[</span><span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'2'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♣'</span><span class="p">),</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'3'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♣'</span><span class="p">),</span> <span class="o">...</span>
+            <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'K'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">),</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">)])</span>
+</code></pre></div></div>
+
+<p>Такое представление вполне читаемо, но уж слишком многословно. В примере выше удалены 48 из 52 карт, которые в реальности будут выведены на экран. На 80-колоночном дисплее просто печать одной полной колоды займет 22 строки! Давайте теперь добавим более лаконичное представление. В целом, объект в <strong>Python</strong> имеет два строковых представления:</p>
+
+<ul>
+  <li>
+    <p><strong>repr(obj)</strong> определяется с помощью <strong>obj.__repr__()</strong> и возвращает представление <strong>obj</strong> для разработчика. Классы данных уже реализуют это.</p>
+  </li>
+  <li>
+    <p><strong>str(obj)</strong> определяется с помощью <strong>obj.__str__()</strong> и возвращает представление <strong>obj</strong> для пользователя. Классы данных не реализуют метод <strong>.__str__()</strong>, поэтому будет вызван метод <strong>.__repr__()</strong>.</p>
+  </li>
+</ul>
+
+<p>Реализуем удобное для пользователя представление класса PlayingCard:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">PlayingCard</span><span class="p">:</span>
+    <span class="n">rank</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">suit</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s">'{self.suit}{self.rank}'</span>
+</code></pre></div></div>
+
+<p>Карты теперь выглядят намного приятнее, но представление колоды по прежнему многословно:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">=</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'♠'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span>
+<span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">ace_of_spades</span><span class="p">)</span>
+<span class="err">♠</span><span class="n">A</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">Deck</span><span class="p">())</span>
+<span class="n">Deck</span><span class="p">(</span><span class="n">cards</span><span class="o">=</span><span class="p">[</span><span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'2'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♣'</span><span class="p">),</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'3'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♣'</span><span class="p">),</span> <span class="o">...</span>
+            <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'K'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">),</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">)])</span>
+</code></pre></div></div>
+
+<p>Для демонстрации добавления собственного метода <strong>.__repr__()</strong> отойдем от принципа, что этот метод должен возвращать код для воссоздания объекта. Практичность важнее. Добавим более лаконичное представление класса <strong>Deck</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Deck</span><span class="p">:</span>
+    <span class="n">cards</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PlayingCard</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">make_french_deck</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cards</span> <span class="o">=</span> <span class="s">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">f</span><span class="s">'{c!s}'</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cards</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s">'{self.__class__.__name__}({cards})'</span>
+</code></pre></div></div>
+
+<p>Обратите внимание на спецификатор <strong>!s</strong>. С помощью него мы указываем, что хотим использовать <strong>str()</strong> для представления <strong>PlayingCard</strong>. Теперь отображение на экране класса <strong>Deck</strong> приятно для глаз:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">Deck</span><span class="p">()</span>
+<span class="n">Deck</span><span class="p">(</span><span class="err">♣</span><span class="mi">2</span><span class="p">,</span> <span class="err">♣</span><span class="mi">3</span><span class="p">,</span> <span class="err">♣</span><span class="mi">4</span><span class="p">,</span> <span class="err">♣</span><span class="mi">5</span><span class="p">,</span> <span class="err">♣</span><span class="mi">6</span><span class="p">,</span> <span class="err">♣</span><span class="mi">7</span><span class="p">,</span> <span class="err">♣</span><span class="mi">8</span><span class="p">,</span> <span class="err">♣</span><span class="mi">9</span><span class="p">,</span> <span class="err">♣</span><span class="mi">10</span><span class="p">,</span> <span class="err">♣</span><span class="n">J</span><span class="p">,</span> <span class="err">♣</span><span class="n">Q</span><span class="p">,</span> <span class="err">♣</span><span class="n">K</span><span class="p">,</span> <span class="err">♣</span><span class="n">A</span><span class="p">,</span>
+     <span class="err">♢</span><span class="mi">2</span><span class="p">,</span> <span class="err">♢</span><span class="mi">3</span><span class="p">,</span> <span class="err">♢</span><span class="mi">4</span><span class="p">,</span> <span class="err">♢</span><span class="mi">5</span><span class="p">,</span> <span class="err">♢</span><span class="mi">6</span><span class="p">,</span> <span class="err">♢</span><span class="mi">7</span><span class="p">,</span> <span class="err">♢</span><span class="mi">8</span><span class="p">,</span> <span class="err">♢</span><span class="mi">9</span><span class="p">,</span> <span class="err">♢</span><span class="mi">10</span><span class="p">,</span> <span class="err">♢</span><span class="n">J</span><span class="p">,</span> <span class="err">♢</span><span class="n">Q</span><span class="p">,</span> <span class="err">♢</span><span class="n">K</span><span class="p">,</span> <span class="err">♢</span><span class="n">A</span><span class="p">,</span>
+     <span class="err">♡</span><span class="mi">2</span><span class="p">,</span> <span class="err">♡</span><span class="mi">3</span><span class="p">,</span> <span class="err">♡</span><span class="mi">4</span><span class="p">,</span> <span class="err">♡</span><span class="mi">5</span><span class="p">,</span> <span class="err">♡</span><span class="mi">6</span><span class="p">,</span> <span class="err">♡</span><span class="mi">7</span><span class="p">,</span> <span class="err">♡</span><span class="mi">8</span><span class="p">,</span> <span class="err">♡</span><span class="mi">9</span><span class="p">,</span> <span class="err">♡</span><span class="mi">10</span><span class="p">,</span> <span class="err">♡</span><span class="n">J</span><span class="p">,</span> <span class="err">♡</span><span class="n">Q</span><span class="p">,</span> <span class="err">♡</span><span class="n">K</span><span class="p">,</span> <span class="err">♡</span><span class="n">A</span><span class="p">,</span>
+     <span class="err">♠</span><span class="mi">2</span><span class="p">,</span> <span class="err">♠</span><span class="mi">3</span><span class="p">,</span> <span class="err">♠</span><span class="mi">4</span><span class="p">,</span> <span class="err">♠</span><span class="mi">5</span><span class="p">,</span> <span class="err">♠</span><span class="mi">6</span><span class="p">,</span> <span class="err">♠</span><span class="mi">7</span><span class="p">,</span> <span class="err">♠</span><span class="mi">8</span><span class="p">,</span> <span class="err">♠</span><span class="mi">9</span><span class="p">,</span> <span class="err">♠</span><span class="mi">10</span><span class="p">,</span> <span class="err">♠</span><span class="n">J</span><span class="p">,</span> <span class="err">♠</span><span class="n">Q</span><span class="p">,</span> <span class="err">♠</span><span class="n">K</span><span class="p">,</span> <span class="err">♠</span><span class="n">A</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="Сравнения">Сравнения</h2>
+
+<p>Во многих карточных играх карты сравниваются друг с другом для определения старшинства. Но в текущей реализации класса <strong>PlayingCard</strong> нет поддержки таких типов операций:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">=</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'♡'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">=</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'♠'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">&gt;</span> <span class="n">queen_of_hearts</span>
+<span class="nb">TypeError</span><span class="p">:</span> <span class="s">'&gt;'</span> <span class="ow">not</span> <span class="n">supported</span> <span class="n">between</span> <span class="n">instances</span> <span class="n">of</span> <span class="s">'Card'</span> <span class="ow">and</span> <span class="s">'Card'</span>
+</code></pre></div></div>
+
+<p>Однако, это легко исправить:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">PlayingCard</span><span class="p">:</span>
+    <span class="n">rank</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">suit</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s">'{self.suit}{self.rank}'</span>
+</code></pre></div></div>
+
+<p>Декоратор <strong>@dataclass</strong> имеет две формы. До этого момента мы видели его простую форму, где не было никаких скобок и параметров. Однако в декоратор можно передать следующие параметры:</p>
+
+<ul>
+  <li><strong>init</strong>: Указание добавлять метод <strong>.__init__()</strong> (по-умолчанию, <strong>True</strong>)</li>
+  <li><strong>repr</strong>: Указание добавлять метод <strong>.__repr__()</strong> (по-умолчанию, <strong>True</strong>)</li>
+  <li><strong>eq</strong>: Указание добавлять метод <strong>.__eq__()</strong> (по-умолчанию, <strong>True</strong>)</li>
+  <li><strong>order</strong>: Указание добавлять методы упорядочивания (по-умолчанию, <strong>False</strong>)</li>
+  <li><strong>unsafe_hash</strong>: Указание принудительно добавлять метод .<strong>hash</strong>() (по-умолчанию, <strong>False</strong>)</li>
+  <li><strong>frozen</strong>: Если <strong>True</strong>, то попытка присвоения значений полям класса вызовет исключение. (по-умолчанию, <strong>False</strong>)</li>
+</ul>
+
+<p>После передачи параметра <strong>order=True</strong>, экземпляры класса <strong>PlayingCard</strong> можно сравнить:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">=</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'♡'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">=</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'♠'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">&gt;</span> <span class="n">queen_of_hearts</span>
+<span class="bp">False</span>
+</code></pre></div></div>
+
+<p>Как две карты сравниваются между собой? Почему <strong>Python</strong> считает, что королева главнее туза?</p>
+
+<p>Оказывается, классы данных сравниваются как кортежи, элементами которых являются поля класса. Королева оказывается выше туза, так как ‘Q’ идет после ‘A’ в алфавите.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'♠'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'♡'</span><span class="p">)</span>
+<span class="bp">False</span>
+</code></pre></div></div>
+
+<p>Для нашего случая это не подходит. Нужно определить индекс сортировки, который использует порядок <strong>RANKS</strong> и <strong>SUITS</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">RANKS</span> <span class="o">=</span> <span class="s">'2 3 4 5 6 7 8 9 10 J Q K A'</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">SUITS</span> <span class="o">=</span> <span class="s">'♣ ♢ ♡ ♠'</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">card</span> <span class="o">=</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'♡'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">RANKS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">card</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">SUITS</span><span class="p">)</span> <span class="o">+</span> <span class="n">SUITS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">card</span><span class="o">.</span><span class="n">suit</span><span class="p">)</span>
+<span class="mi">42</span>
+</code></pre></div></div>
+
+<p>Для того, чтобы класс <strong>PlayingCard</strong> использовал этот индекс в сравнениях, нужно добавить в него поле <strong>sort_index</strong>. Значение этого поля должно автоматически расчитывается из значений полей <strong>rank</strong> и <strong>suit</strong>. Для этого прекрасно подходит метод <strong>__post_init__()</strong>, который позволяет добавить дополнительную обработку после вызова метода <strong>__init__()</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+<span class="n">RANKS</span> <span class="o">=</span> <span class="s">'2 3 4 5 6 7 8 9 10 J Q K A'</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">SUITS</span> <span class="o">=</span> <span class="s">'♣ ♢ ♡ ♠'</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">PlayingCard</span><span class="p">:</span>
+    <span class="n">sort_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">rank</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">suit</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sort_index</span> <span class="o">=</span> <span class="p">(</span><span class="n">RANKS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">SUITS</span><span class="p">)</span>
+                           <span class="o">+</span> <span class="n">SUITS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">suit</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s">'{self.suit}{self.rank}'</span>
+</code></pre></div></div>
+
+<p>Обратите внимание на то, что <strong>sort_index</strong> добавляется как первое поле класса. Таким образом, сначала выполняется сравнение значений полей <strong>sort_index</strong> у объектов, и только при их равенстве будут использованы другие поля. С помощью <strong>field()</strong> необходимо исключить <strong>sort_index</strong> из параметров метода <strong>__init__()</strong>.</p>
+
+<p>Наконец-то тузы победили:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">=</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'♡'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">=</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'♠'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">&gt;</span> <span class="n">queen_of_hearts</span>
+<span class="bp">True</span>
+</code></pre></div></div>
+
+<p>Теперь легко создать отсортированную колоду:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">Deck</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">make_french_deck</span><span class="p">()))</span>
+<span class="n">Deck</span><span class="p">(</span><span class="err">♣</span><span class="mi">2</span><span class="p">,</span> <span class="err">♢</span><span class="mi">2</span><span class="p">,</span> <span class="err">♡</span><span class="mi">2</span><span class="p">,</span> <span class="err">♠</span><span class="mi">2</span><span class="p">,</span> <span class="err">♣</span><span class="mi">3</span><span class="p">,</span> <span class="err">♢</span><span class="mi">3</span><span class="p">,</span> <span class="err">♡</span><span class="mi">3</span><span class="p">,</span> <span class="err">♠</span><span class="mi">3</span><span class="p">,</span> <span class="err">♣</span><span class="mi">4</span><span class="p">,</span> <span class="err">♢</span><span class="mi">4</span><span class="p">,</span> <span class="err">♡</span><span class="mi">4</span><span class="p">,</span> <span class="err">♠</span><span class="mi">4</span><span class="p">,</span> <span class="err">♣</span><span class="mi">5</span><span class="p">,</span>
+     <span class="err">♢</span><span class="mi">5</span><span class="p">,</span> <span class="err">♡</span><span class="mi">5</span><span class="p">,</span> <span class="err">♠</span><span class="mi">5</span><span class="p">,</span> <span class="err">♣</span><span class="mi">6</span><span class="p">,</span> <span class="err">♢</span><span class="mi">6</span><span class="p">,</span> <span class="err">♡</span><span class="mi">6</span><span class="p">,</span> <span class="err">♠</span><span class="mi">6</span><span class="p">,</span> <span class="err">♣</span><span class="mi">7</span><span class="p">,</span> <span class="err">♢</span><span class="mi">7</span><span class="p">,</span> <span class="err">♡</span><span class="mi">7</span><span class="p">,</span> <span class="err">♠</span><span class="mi">7</span><span class="p">,</span> <span class="err">♣</span><span class="mi">8</span><span class="p">,</span> <span class="err">♢</span><span class="mi">8</span><span class="p">,</span>
+     <span class="err">♡</span><span class="mi">8</span><span class="p">,</span> <span class="err">♠</span><span class="mi">8</span><span class="p">,</span> <span class="err">♣</span><span class="mi">9</span><span class="p">,</span> <span class="err">♢</span><span class="mi">9</span><span class="p">,</span> <span class="err">♡</span><span class="mi">9</span><span class="p">,</span> <span class="err">♠</span><span class="mi">9</span><span class="p">,</span> <span class="err">♣</span><span class="mi">10</span><span class="p">,</span> <span class="err">♢</span><span class="mi">10</span><span class="p">,</span> <span class="err">♡</span><span class="mi">10</span><span class="p">,</span> <span class="err">♠</span><span class="mi">10</span><span class="p">,</span> <span class="err">♣</span><span class="n">J</span><span class="p">,</span> <span class="err">♢</span><span class="n">J</span><span class="p">,</span> <span class="err">♡</span><span class="n">J</span><span class="p">,</span>
+     <span class="err">♠</span><span class="n">J</span><span class="p">,</span> <span class="err">♣</span><span class="n">Q</span><span class="p">,</span> <span class="err">♢</span><span class="n">Q</span><span class="p">,</span> <span class="err">♡</span><span class="n">Q</span><span class="p">,</span> <span class="err">♠</span><span class="n">Q</span><span class="p">,</span> <span class="err">♣</span><span class="n">K</span><span class="p">,</span> <span class="err">♢</span><span class="n">K</span><span class="p">,</span> <span class="err">♡</span><span class="n">K</span><span class="p">,</span> <span class="err">♠</span><span class="n">K</span><span class="p">,</span> <span class="err">♣</span><span class="n">A</span><span class="p">,</span> <span class="err">♢</span><span class="n">A</span><span class="p">,</span> <span class="err">♡</span><span class="n">A</span><span class="p">,</span> <span class="err">♠</span><span class="n">A</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Или раздать игрокам 10 случайных карт:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">sample</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Deck</span><span class="p">(</span><span class="n">sample</span><span class="p">(</span><span class="n">make_french_deck</span><span class="p">(),</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">Deck</span><span class="p">(</span><span class="err">♢</span><span class="mi">2</span><span class="p">,</span> <span class="err">♡</span><span class="n">A</span><span class="p">,</span> <span class="err">♢</span><span class="mi">10</span><span class="p">,</span> <span class="err">♣</span><span class="mi">2</span><span class="p">,</span> <span class="err">♢</span><span class="mi">3</span><span class="p">,</span> <span class="err">♠</span><span class="mi">3</span><span class="p">,</span> <span class="err">♢</span><span class="n">A</span><span class="p">,</span> <span class="err">♠</span><span class="mi">8</span><span class="p">,</span> <span class="err">♠</span><span class="mi">9</span><span class="p">,</span> <span class="err">♠</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="Неизменяемые-классы-данных">Неизменяемые классы данных</h1>
+
+<p>Одной из основных особенностей именованных кортежей, которые были показаны ранее, является их неизменяемость. То есть, нельзя присвоить значения полям объекта повторно. Зачастую это является крайне полезным свойством. Чтобы наделить класс данных свойством неизменяемости, нужно при создании установить параметр <em>frozen=True</em>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Position</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+</code></pre></div></div>
+
+<p>Теперь после создания элемента класса нельзя изменить значения его полей:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">Position</span><span class="p">(</span><span class="s">'Oslo'</span><span class="p">,</span> <span class="mf">10.8</span><span class="p">,</span> <span class="mf">59.9</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pos</span><span class="o">.</span><span class="n">name</span>
+<span class="s">'Oslo'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pos</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">'Stockholm'</span>
+<span class="n">dataclasses</span><span class="o">.</span><span class="n">FrozenInstanceError</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">assign</span> <span class="n">to</span> <span class="n">field</span> <span class="s">'name'</span>
+</code></pre></div></div>
+
+<p>Однако, следует помнить, что если класс данных содержит в качестве значения поля изменяемую структуру, то она в любом случае может изменяться. Это справедливо для всех вложенных структур данных в <em>Python</em>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ImmutableCard</span><span class="p">:</span>
+    <span class="n">rank</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">suit</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ImmutableDeck</span><span class="p">:</span>
+    <span class="n">cards</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PlayingCard</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Классы <em>ImmutableCard</em> и <em>ImmutableDeck</em> неизменяемые, а поле <em>cards</em> является списком, изменямой структурой данных:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">=</span> <span class="n">ImmutableCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'♡'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">=</span> <span class="n">ImmutableCard</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'♠'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">deck</span> <span class="o">=</span> <span class="n">ImmutableDeck</span><span class="p">([</span><span class="n">queen_of_hearts</span><span class="p">,</span> <span class="n">ace_of_spades</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">deck</span>
+<span class="n">ImmutableDeck</span><span class="p">(</span><span class="n">cards</span><span class="o">=</span><span class="p">[</span><span class="n">ImmutableCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'Q'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♡'</span><span class="p">),</span> <span class="n">ImmutableCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">)])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">deck</span><span class="o">.</span><span class="n">cards</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ImmutableCard</span><span class="p">(</span><span class="s">'7'</span><span class="p">,</span> <span class="s">'♢'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">deck</span>
+<span class="n">ImmutableDeck</span><span class="p">(</span><span class="n">cards</span><span class="o">=</span><span class="p">[</span><span class="n">ImmutableCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'7'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♢'</span><span class="p">),</span> <span class="n">ImmutableCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">)])</span>
+</code></pre></div></div>
+
+<p>Чтобы избегать таких случаев, нужно обязательно использовать для полей класса, который предполагается неизменяемым, неизменяемые типы данных. Для класса <em>ImmutableDeck</em> следовало бы использовать кортеж вместо списка.</p>
+
+<h1 id="Наследование">Наследование</h1>
+
+<p>Как и обычные классы, классы данных можно наследовать. Для примера, расширим класс <em>Position</em> полем <em>country</em> и будем использовать его для представления столиц стран:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Position</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Capital</span><span class="p">(</span><span class="n">Position</span><span class="p">):</span>
+    <span class="n">country</span><span class="p">:</span> <span class="nb">str</span>
+</code></pre></div></div>
+
+<p>В этом простом примере все работает так, как и ожидается:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">Capital</span><span class="p">(</span><span class="s">'Oslo'</span><span class="p">,</span> <span class="mf">10.8</span><span class="p">,</span> <span class="mf">59.9</span><span class="p">,</span> <span class="s">'Norway'</span><span class="p">)</span>
+<span class="n">Capital</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Oslo'</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">10.8</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">59.9</span><span class="p">,</span> <span class="n">country</span><span class="o">=</span><span class="s">'Norway'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Поле <em>country</em> класса <em>Capital</em> добавилось после трех полей базового класса <em>Position</em>. Все становится несколько сложнее, если какие-либо поля класса-родителя содержат значения по-умолчанию:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Position</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Capital</span><span class="p">(</span><span class="n">Position</span><span class="p">):</span>
+    <span class="n">country</span><span class="p">:</span> <span class="nb">str</span>  <span class="c"># Не работает</span>
+</code></pre></div></div>
+
+<p>Этот код сразу упадет с ошибкой <em>TypeError</em> и сообщением</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"non-default argument 'country' follows default argument"</span>
+</code></pre></div></div>
+
+<p>Проблема заключается в то, что поле <em>country</em> не имеет значения по-умолчанию, в то время как <em>lon</em> и <em>lat</em> их имеют. И класс данных <em>Capital</em> пытается создать метод <em>__init__()</em> с сигнатурой</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">country</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div></div>
+
+<p>Это не валидный код <strong>Python</strong>. Если параметру задано значение по-умолчанию, то все следующие за ним также должны иметь их. И это справедливо для полей классов данных.</p>
+
+<p>Еще одна вещь, о которой стоит помнить — порядок полей в классе-наследнике. Он совпадает с последовательность полей в классе-родителе. И даже если поле переопределено в подклассе, то порядок не меняется:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Position</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Capital</span><span class="p">(</span><span class="n">Position</span><span class="p">):</span>
+    <span class="n">country</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s">'Unknown'</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">40.0</span>
+</code></pre></div></div>
+
+<p>Порядок полей в классе <strong>Capital</strong> будет <strong>name</strong>, <strong>lon</strong>, <strong>lat</strong>, <strong>country</strong>, однако значение по-умолчанию для поля <strong>lat</strong> будет равным 40.0:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">Capital</span><span class="p">(</span><span class="s">'Madrid'</span><span class="p">,</span> <span class="n">country</span><span class="o">=</span><span class="s">'Spain'</span><span class="p">)</span>
+<span class="n">Capital</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Madrid'</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">40.0</span><span class="p">,</span> <span class="n">country</span><span class="o">=</span><span class="s">'Spain'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="Оптимизация-классов-данных">Оптимизация классов данных</h1>
+
+<p>Приближаясь к завершению, нужно сказать несколько слов о слотах (<strong>slots</strong>). Их можно использовать, чтобы сделать классы более быстрыми и потребляющими меньше памяти. Какого-то специального синтаксиса для классов данных по работе со слотами нет, но и обычный способ прекрасно работает, ведь классы данных — это обычные классы <strong>Python</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">SimplePosition</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">SlotPosition</span><span class="p">:</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'lon'</span><span class="p">,</span> <span class="s">'lat'</span><span class="p">]</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span>
+</code></pre></div></div>
+
+<p>По сути, в __slots__ задается перечисление возможных полей или атрибутов класса. Они и только они могут быть в дальнейшем определены. Более того, если класс содержит слоты, то его поля не могут иметь значений по-умолчанию.</p>
+
+<p>Преимущества таких ограничений состоят в дальнейших оптимизационных улучшениях. Например, классы начинают потреблять меньше памяти, измерить это можно с помощью <strong>pympler</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pympler</span> <span class="kn">import</span> <span class="n">asizeof</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">simple</span> <span class="o">=</span> <span class="n">SimplePosition</span><span class="p">(</span><span class="s">'London'</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">51.5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">slot</span> <span class="o">=</span> <span class="n">SlotPosition</span><span class="p">(</span><span class="s">'Madrid'</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.7</span><span class="p">,</span> <span class="mf">40.4</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">asizeof</span><span class="o">.</span><span class="n">asizesof</span><span class="p">(</span><span class="n">simple</span><span class="p">,</span> <span class="n">slot</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">440</span><span class="p">,</span> <span class="mi">248</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Кроме того, работа с классами, содержащими слоты, как правило, проходит быстрее. В следующем примере демонстрируется скорость доступа к атрибутам при помощи библиотеки <strong>timeit</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">timeit</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">timeit</span><span class="p">(</span><span class="s">'slot.name'</span><span class="p">,</span> <span class="n">setup</span><span class="o">=</span><span class="s">"from position import SlotPosition; slot=SlotPosition('Oslo', 10.8, 59.9)"</span><span class="p">)</span>
+<span class="mf">0.05882283499886398</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">timeit</span><span class="p">(</span><span class="s">'simple.name'</span><span class="p">,</span> <span class="n">setup</span><span class="o">=</span><span class="s">"from position import SimplePosition; simple=SimplePosition('Oslo', 10.8, 59.9)"</span><span class="p">)</span>
+<span class="mf">0.09207444800267695</span>
+</code></pre></div></div>
+
+<p>В этом примере разница по скорости составляет аж 35%.</p>
+
+<h1 id="Заключение">Заключение</h1>
+
+<p>Классы данных — одна из новых возможностей в <strong>Python 3.7</strong>. Они позволяют избавиться от написания шаблонного кода инициализации, представления и сравнения. В этой статье мы увидели, как определять свои классы данных, как задавать значения по-умолчанию для полей, рассмотрели свойство неизменяемости и процедуру наследования. Если вы ходите более основательно погрузиться во все детали классов данных, то загляните в <a href="https://www.python.org/dev/peps/pep-0557/" rel="nofollow" target="_blank">PEP 557</a> и в обсуждения на <a href="https://github.com/ericvsmith/dataclasses/issues?utf8=✓&amp;q=" rel="nofollow" target="_blank">GitHub</a>.</p>
 
   
 </article>
