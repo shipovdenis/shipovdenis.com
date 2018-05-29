@@ -29,22 +29,22 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <meta property="og:title" content="Классы данных в Python" />
 <meta name="author" content="Denis Shipov" />
 <meta property="og:locale" content="ru_RU" />
-<meta name="description" content="Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных. Определение значений по-умолчанию. Указание типов данных. Расширение с помощью методов." />
-<meta property="og:description" content="Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных. Определение значений по-умолчанию. Указание типов данных. Расширение с помощью методов." />
+<meta name="description" content="Основы классов данных с применением декоратора @dataclass, определение значений по умолчанию, указание типов данных, расширение с помощью методов, вопросы наследования, неизменяемости и оптимизации. Существующие альтернативы классам данных." />
+<meta property="og:description" content="Основы классов данных с применением декоратора @dataclass, определение значений по умолчанию, указание типов данных, расширение с помощью методов, вопросы наследования, неизменяемости и оптимизации. Существующие альтернативы классам данных." />
 <link rel="canonical" href="http://localhost:4000/blog/python-dataclass" />
 <meta property="og:url" content="http://localhost:4000/blog/python-dataclass" />
 <meta property="og:site_name" content="shipovdenis" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-05-20T00:00:00+03:00" />
 <script type="application/ld+json">
-{"description":"Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных. Определение значений по-умолчанию. Указание типов данных. Расширение с помощью методов.","author":{"@type":"Person","name":"Denis Shipov"},"@type":"BlogPosting","url":"http://localhost:4000/blog/python-dataclass","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/icons/icon.png"},"name":"Denis Shipov"},"headline":"Классы данных в Python","dateModified":"2018-05-20T00:00:00+03:00","datePublished":"2018-05-20T00:00:00+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/python-dataclass"},"@context":"http://schema.org"}</script>
+{"description":"Основы классов данных с применением декоратора @dataclass, определение значений по умолчанию, указание типов данных, расширение с помощью методов, вопросы наследования, неизменяемости и оптимизации. Существующие альтернативы классам данных.","author":{"@type":"Person","name":"Denis Shipov"},"@type":"BlogPosting","url":"http://localhost:4000/blog/python-dataclass","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/icons/icon.png"},"name":"Denis Shipov"},"headline":"Классы данных в Python","dateModified":"2018-05-20T00:00:00+03:00","datePublished":"2018-05-20T00:00:00+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/python-dataclass"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
   
 
   
-    <meta name="keywords" content="">
+    <meta name="keywords" content="классы данных, data class, python">
   
 
 
@@ -232,7 +232,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 
   
     <p class="message" >
-      Основы классов данных с применением декоратора @dataclass. Существующие альтернативы классам данных. Определение значений по-умолчанию. Указание типов данных. Расширение с помощью методов.
+      Основы классов данных с применением декоратора @dataclass, определение значений по умолчанию, указание типов данных, расширение с помощью методов, вопросы наследования, неизменяемости и оптимизации. Существующие альтернативы классам данных.
 
     </p>
   
@@ -241,7 +241,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
   </header>
 
   
-    <p>Одной из интересных особенностей, появившихся в <strong>Python</strong> с версии <strong>3.7</strong>, является <strong>класс данных</strong>(<strong>data class</strong>). <strong>Класс данных</strong> — это класс, как правило содержащий только данные, но в действительности нет никаких ограничений. Он создается с помощью нового декоратора <strong>@dataclass</strong></p>
+    <p>Одной из интересных особенностей, появившихся в <strong>Python</strong> с версии <strong>3.7</strong>, является <strong>класс данных</strong> (<strong>data class</strong>). Это класс, как правило, просто представляющий некоторую структуру данных, но в действительности никакие функциональные ограничения не накладываются. Он создается с помощью нового декоратора <strong>@dataclass</strong></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
@@ -286,7 +286,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 </code></pre></div></div>
 
 <p>Понятно, что декоратор <strong>@dataclass</strong> выполняет определенные действия “за кулисами”.
-<strong>Класс данных</strong> уже реализует метод <strong>__repr__()</strong> для обеспечения хорошего строкого представления и метод <strong>__eq__()</strong>, который выполняет базовые сравнения объектов. Чтобы класс <strong>RegularCard</strong> обладал схожей функциональностью, нужно добавить это методы явно:</p>
+<strong>Класс данных</strong> уже реализует метод <strong>__repr__()</strong> для обеспечения хорошего строкового представления и метод <strong>__eq__()</strong>, который выполняет базовые сравнения объектов. Чтобы класс <strong>RegularCard</strong> обладал схожей функциональностью, нужно добавить это методы явно:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RegularCard</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">suit</span><span class="p">):</span>
@@ -312,7 +312,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
   <li>Как работает наследование в <strong>классах данных</strong>?</li>
 </ul>
 
-<p>Скоро мы погрузимся в эти особенности новой функциональности <strong>Python</strong>. Однако, вам может показаться, что вы уже видели что-то подобное раньше.</p>
+<p>Скоро мы погрузимся в эти особенности новой функциональности <strong>Python</strong>. Однако, вам может показаться, что вы уже видели что-то подобное ранее.</p>
 
 <h1 id="Существующие-альтернативы-классам-данных">Существующие альтернативы классам данных</h1>
 
@@ -330,7 +330,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
   </li>
   <li>
     <p>Для <strong>queen_of_hearts_tuple</strong> нужно помнить порядок следования атрибутов. 
-Написав <strong>queen_of_hearts_tuple = (‘Hearts’, ‘Q’)</strong> мы явно получим не то, что хотели, однако сообщение об ошибке не возникнет.</p>
+Написав <strong>queen_of_hearts_tuple = (‘Hearts’, ‘Q’)</strong> мы явно получим не то что хотели, однако сообщение об ошибке не возникнет.</p>
   </li>
   <li>
     <p>При использовании словарей нужно следить за согласованностью имен атрибутов. Например, <strong>queen_of_hearts_dict = {‘value’: ‘A’, ‘suit’: ‘Spades’}</strong> не будет работать должным образом, так как впоследствии мы ожидаем поле <strong>rank</strong>, а не <strong>value</strong>.</p>
@@ -345,7 +345,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <span class="s">'Hearts'</span>
 </code></pre></div></div>
 
-<p>Лучшей альтернативой является использование <strong>именованных кортежей</strong>(<strong>namedtuple</strong>). Этот подход широко используется для создания небольших читаемых структур данных. Класс выше с использованием <strong>namedtuple</strong> создается следующим образом:</p>
+<p>Лучшей альтернативой является использование <strong>именованных кортежей</strong> (<strong>namedtuple</strong>). Этот подход широко используется для создания небольших читаемых структур данных. Класс выше с использованием <strong>namedtuple</strong> создается следующим образом:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 
@@ -363,7 +363,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <span class="bp">True</span>
 </code></pre></div></div>
 
-<p>Так зачем тогда вообще возиться с классами данных? Во первых, классы данных имеют более широкие возможности, чем были продемонстрированы на данный момент. В тоже время <strong>namedtuple</strong> обладает и другими особенностями, которые не всегда желательны. По своей структуре <strong>namedtuple</strong> является обычным кортежом. Это можно увидеть в сравнении:</p>
+<p>Так зачем тогда вообще возиться с классами данных? Во первых, классы данных имеют более широкие возможности, чем были продемонстрированы на данный момент. В то же время <strong>namedtuple</strong> обладает и другими особенностями, которые не всегда желательны. По своей структуре <strong>namedtuple</strong> является обычным кортежем. Это можно увидеть в сравнении:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">==</span> <span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'Hearts'</span><span class="p">)</span>
 <span class="bp">True</span>
@@ -377,7 +377,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <span class="bp">True</span>
 </code></pre></div></div>
 
-<p>В именнованных кортежах сложно определять значения по-умолчанию, и по своей природе они являются неизменяемыми структурами данных, что в одних случаях просто превосходно, но в других сказывается недостаток гибкости:</p>
+<p>В именованных кортежах сложно определять значения по умолчанию, и по своей природе они являются неизменяемыми структурами данных, что в одних случаях просто превосходно, но в других сказывается недостаток гибкости:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">card</span> <span class="o">=</span> <span class="n">NamedTupleCard</span><span class="p">(</span><span class="s">'7'</span><span class="p">,</span> <span class="s">'Diamonds'</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">card</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="s">'9'</span>
@@ -401,7 +401,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
     <span class="n">suit</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p>Библиотека <strong>attrs</strong> содержит функциональность, которой не обладают классы данных, например, валидаторы и конвертеры. Более того, <strong>attrs</strong> поддерживает Python 2.7 и Python 3.4 и выше. Но все-таки это не часть стандартной библиотеки и придется добавлять лишнюю зависимость в проект.</p>
+<p>Библиотека <strong>attrs</strong> содержит функциональность, которой не обладают классы данных, например, валидаторы и конвертеры. Более того, <strong>attrs</strong> поддерживает <strong>Python 2.7</strong> и <strong>Python 3.4</strong> и выше. Но все-таки это не часть стандартной библиотеки и придется добавлять лишнюю зависимость в проект.</p>
 
 <p>Помимо обычных и именованных кортежей, словарей и <strong>attrs</strong> существует множество других средств, предоставляющих схожую функциональность, например, <strong>typing.NamedTuple</strong>, <strong>namedlist</strong>, <strong>attrdict</strong>, <strong>plumber</strong>, <strong>fields</strong>. И нужно смотреть в каждом конкретном случае, какой из них подойдет лучше всего для стоящей задачи.</p>
 
@@ -431,18 +431,18 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <span class="n">Oslo</span> <span class="ow">is</span> <span class="n">at</span> <span class="mf">59.9</span><span class="err">°</span><span class="n">N</span><span class="p">,</span> <span class="mf">10.8</span><span class="err">°</span><span class="n">E</span>
 </code></pre></div></div>
 
-<p>Также можно создать класс данных подобно тому, как создаются именнованные кортежи. Следующий код равносилен определению класса <strong>Position</strong> выше:</p>
+<p>Также можно создать класс данных подобно тому, как создаются именованные кортежи. Следующий код равносилен определению класса <strong>Position</strong> выше:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">make_dataclass</span>
 
 <span class="n">Position</span> <span class="o">=</span> <span class="n">make_dataclass</span><span class="p">(</span><span class="s">'Position'</span><span class="p">,</span> <span class="p">[</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'lat'</span><span class="p">,</span> <span class="s">'lon'</span><span class="p">])</span>
 </code></pre></div></div>
 
-<p>Класс данных — это обычный класс <strong>Python</strong>. Единственным отличием является набор уже реализованных методов, таких как <strong>.__init</strong>()<strong>, __.__repr</strong>()<strong>, and __.__eq</strong>()__.</p>
+<p>Класс данных — это обычный класс <strong>Python</strong>. Единственным отличием является набор уже реализованных методов, таких как <strong>__init__()</strong>, <strong>__repr__()</strong> и <strong>__eq__()</strong>.</p>
 
-<h2 id="Значения-по-умолчанию">Значения по-умолчанию</h2>
+<h2 id="Значения-по-умолчанию">Значения по умолчанию</h2>
 
-<p>Очень просто добавить значения по-умолчанию для полей класса данных:</p>
+<p>Очень просто добавить значения по умолчанию для полей класса данных:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
@@ -463,7 +463,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <span class="n">Position</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Vancouver'</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">123.1</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">49.3</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Немного позднее мы узнаем о <strong>default_factory</strong>, что позволит определять более сложные значения по-умолчанию.</p>
+<p>Немного позднее мы узнаем о <strong>default_factory</strong>, что позволит определять более сложные значения по умолчанию.</p>
 
 <h2 id="Определение-типа-type-hints">Определение типа (Type Hints)</h2>
 
@@ -490,7 +490,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 
 <h2 id="Добавление-методов">Добавление методов</h2>
 
-<p>Методы в классы данных добавляются так же, как и в обычные классы. Для примера вычислим расстояние между двумя точками на планете с помощью формулы гаверсинусов. Добавим метод <strong>.distance_to()</strong> в класс:</p>
+<p>Методы в классы данных добавляются так же, как и в обычные классы. Для примера вычислим расстояние между двумя точками на планете с помощью формулы гаверсинусов. Добавим метод <strong>distance_to()</strong> в класс:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">asin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">radians</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">sqrt</span>
@@ -518,7 +518,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <span class="mf">7181.7841229421165</span>
 </code></pre></div></div>
 
-<h1 id="Гибкие-классы-данных">Гибкие классы данных</h1>
+<h1 id="Добавляем-гибкости-в-классы-данных">Добавляем гибкости в классы данных</h1>
 
 <p>На данный момент мы рассмотрели базовые возможности классов данных. Теперь посмотрим на более продвинутые возможности, такие как параметры декоратора <strong>@dataclass</strong> и функцию <strong>field()</strong>. Вместе они предоставляют больше контроля при создании классов данных.</p>
 
@@ -546,9 +546,9 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
             <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'Spades'</span><span class="p">)])</span>
 </code></pre></div></div>
 
-<h2 id="Расширенные-значения-по-умолчанию">Расширенные значения по-умолчанию</h2>
+<h2 id="Расширенные-значения-по-умолчанию">Расширенные значения по умолчанию</h2>
 
-<p>Теперь нам нужно определить значения по-умолчанию для класса <strong>Deck</strong>. Было бы удобно, если бы вызов <strong>Deck()</strong> создавал обычную колоду из 52 игральных карт. Для начала определим масти и ранги карт. Затем добавим функцию <strong>make_french_deck()</strong>, которая создаст список экземпляров класса <strong>PlayingCard</strong>:</p>
+<p>Теперь нам нужно определить значения по умолчанию для класса <strong>Deck</strong>. Было бы удобно, если бы вызов <strong>Deck()</strong> создавал обычную колоду из 52 игральных карт. Для начала определим масти и ранги карт. Затем добавим функцию <strong>make_french_deck()</strong>, которая создаст список экземпляров класса <strong>PlayingCard</strong>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">RANKS</span> <span class="o">=</span> <span class="s">'2 3 4 5 6 7 8 9 10 J Q K A'</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 <span class="n">SUITS</span> <span class="o">=</span> <span class="s">'♣ ♢ ♡ ♠'</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
@@ -564,7 +564,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
  <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'K'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">),</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">)]</span>
 </code></pre></div></div>
 
-<p>Теоретически теперь можно использовать эту функцию, чтобы определить значение по-умолчению для <strong>Deck.cards</strong>:</p>
+<p>Теоретически теперь можно использовать эту функцию, чтобы определить значение по умолчанию для <strong>Deck.cards</strong>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
@@ -574,9 +574,9 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
     <span class="n">cards</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PlayingCard</span><span class="p">]</span> <span class="o">=</span> <span class="n">make_french_deck</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><strong>Не делайте так!</strong> Это один из наиболее распространенных анти-паттернов в <strong>Python</strong> — использование изменяемых значений по-умолчанию. Проблема в том, что все экземпляры класса <strong>Deck</strong> будут использовать один и тот же список значений как значение для поля <strong>cards</strong>. Это значит, что если карта была удалена из одной колоды, то она также будет удалена из всех существующих колод. В действительности, классы данных огорождают от этого, и код выше вызовет исключение <strong>ValueError</strong>.</p>
+<p><strong>Не делайте так!</strong> Это один из наиболее распространенных анти-паттернов в <strong>Python</strong> — использование изменяемых значений по-умолчанию. Проблема в том, что все экземпляры класса <strong>Deck</strong> будут использовать один и тот же список значений как значение для поля <strong>cards</strong>. Это значит, что если карта была удалена из одной колоды, то она также будет удалена из всех существующих колод. В действительности, классы данных ограждают от этого, и код выше вызовет исключение <strong>ValueError</strong>.</p>
 
-<p>Вместо этого классы данных используют <strong>default_factory</strong> для обработки изменяемых значений по-умолчанию. Для использования <strong>default_factory</strong> нужно прибегнуть к спецификатору <strong>field()</strong>:</p>
+<p>Вместо этого классы данных используют <strong>default_factory</strong> для обработки изменяемых значений по умолчанию. Для использования <strong>default_factory</strong> нужно прибегнуть к спецификатору <strong>field()</strong>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
@@ -596,16 +596,16 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <p>Спецификатор <strong>field()</strong> используется для настройки каждого поля класса данных в отдельности (мы увидим примеры этого ниже) и поддерживает:</p>
 
 <ul>
-  <li><strong>default</strong>: Значение по-умолчанию для поля</li>
+  <li><strong>default</strong>: Значение по умолчанию для поля</li>
   <li><strong>default_factory</strong>: Функция, возвращающая начальное значение для поля</li>
-  <li><strong>init</strong>: Указание использовать поле в методе <strong>.__init</strong>()__ (по-умолчанию, <strong>True</strong>)</li>
-  <li><strong>repr</strong>: Указание использовать поле в функции <strong>repr</strong> (по-умолчанию, <strong>True</strong>)</li>
-  <li><strong>compare</strong>: Указание включать поле в сравнения (по-умолчанию, <strong>True</strong>)</li>
-  <li><strong>hash</strong>: Указание включать поле, когда вычисляется <strong>hash()</strong> (по-умолчанию, совпадает с <strong>compare</strong>)</li>
+  <li><strong>init</strong>: Указание использовать поле в методе <strong>__init__()</strong> (по умолчанию, <strong>True</strong>)</li>
+  <li><strong>repr</strong>: Указание использовать поле в функции <strong>repr</strong> (по умолчанию, <strong>True</strong>)</li>
+  <li><strong>compare</strong>: Указание включать поле в сравнения (по умолчанию, <strong>True</strong>)</li>
+  <li><strong>hash</strong>: Указание включать поле, когда вычисляется <strong>hash()</strong> (по умолчанию, совпадает с <strong>compare</strong>)</li>
   <li><strong>metadata</strong>: Отображение информации о поле</li>
 </ul>
 
-<p>В примере класса <strong>Position</strong> мы увидели, как добавлять простые значения по-умолчанию с помощью конструкции:</p>
+<p>В примере класса <strong>Position</strong> мы увидели, как добавлять простые значения по умолчанию с помощью конструкции:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
 </code></pre></div></div>
@@ -656,11 +656,11 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
     <p><strong>repr(obj)</strong> определяется с помощью <strong>obj.__repr__()</strong> и возвращает представление <strong>obj</strong> для разработчика. Классы данных уже реализуют это.</p>
   </li>
   <li>
-    <p><strong>str(obj)</strong> определяется с помощью <strong>obj.__str__()</strong> и возвращает представление <strong>obj</strong> для пользователя. Классы данных не реализуют метод <strong>.__str__()</strong>, поэтому будет вызван метод <strong>.__repr__()</strong>.</p>
+    <p><strong>str(obj)</strong> определяется с помощью <strong>obj.__str__()</strong> и возвращает представление <strong>obj</strong> для пользователя. Классы данных не реализуют метод <strong>__str__()</strong>, поэтому будет вызван метод <strong>__repr__()</strong>.</p>
   </li>
 </ul>
 
-<p>Реализуем удобное для пользователя представление класса PlayingCard:</p>
+<p>Реализуем удобное для пользователя представление класса <strong>PlayingCard</strong>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
@@ -685,7 +685,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
             <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'K'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">),</span> <span class="n">PlayingCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">)])</span>
 </code></pre></div></div>
 
-<p>Для демонстрации добавления собственного метода <strong>.__repr__()</strong> отойдем от принципа, что этот метод должен возвращать код для воссоздания объекта. Практичность важнее. Добавим более лаконичное представление класса <strong>Deck</strong>:</p>
+<p>Для демонстрации добавления собственного метода <strong>__repr__()</strong> отойдем от принципа, что этот метод должен возвращать код для воссоздания объекта. Практичность важнее. Добавим более лаконичное представление класса <strong>Deck</strong>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
@@ -734,12 +734,12 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <p>Декоратор <strong>@dataclass</strong> имеет две формы. До этого момента мы видели его простую форму, где не было никаких скобок и параметров. Однако в декоратор можно передать следующие параметры:</p>
 
 <ul>
-  <li><strong>init</strong>: Указание добавлять метод <strong>.__init__()</strong> (по-умолчанию, <strong>True</strong>)</li>
-  <li><strong>repr</strong>: Указание добавлять метод <strong>.__repr__()</strong> (по-умолчанию, <strong>True</strong>)</li>
-  <li><strong>eq</strong>: Указание добавлять метод <strong>.__eq__()</strong> (по-умолчанию, <strong>True</strong>)</li>
-  <li><strong>order</strong>: Указание добавлять методы упорядочивания (по-умолчанию, <strong>False</strong>)</li>
-  <li><strong>unsafe_hash</strong>: Указание принудительно добавлять метод .<strong>hash</strong>() (по-умолчанию, <strong>False</strong>)</li>
-  <li><strong>frozen</strong>: Если <strong>True</strong>, то попытка присвоения значений полям класса вызовет исключение. (по-умолчанию, <strong>False</strong>)</li>
+  <li><strong>init</strong>: Указание добавлять метод <strong>__init__()</strong> (по умолчанию, <strong>True</strong>)</li>
+  <li><strong>repr</strong>: Указание добавлять метод <strong>__repr__()</strong> (по умолчанию, <strong>True</strong>)</li>
+  <li><strong>eq</strong>: Указание добавлять метод <strong>__eq__()</strong> (по умолчанию, <strong>True</strong>)</li>
+  <li><strong>order</strong>: Указание добавлять методы упорядочивания (по умолчанию, <strong>False</strong>)</li>
+  <li><strong>unsafe_hash</strong>: Указание принудительно добавлять метод <strong>hash</strong>() (по умолчанию, <strong>False</strong>)</li>
+  <li><strong>frozen</strong>: Если <strong>True</strong>, то попытка присвоения значений полям класса вызовет исключение. (по умолчанию, <strong>False</strong>)</li>
 </ul>
 
 <p>После передачи параметра <strong>order=True</strong>, экземпляры класса <strong>PlayingCard</strong> можно сравнить:</p>
@@ -767,7 +767,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <span class="mi">42</span>
 </code></pre></div></div>
 
-<p>Для того, чтобы класс <strong>PlayingCard</strong> использовал этот индекс в сравнениях, нужно добавить в него поле <strong>sort_index</strong>. Значение этого поля должно автоматически расчитывается из значений полей <strong>rank</strong> и <strong>suit</strong>. Для этого прекрасно подходит метод <strong>__post_init__()</strong>, который позволяет добавить дополнительную обработку после вызова метода <strong>__init__()</strong>:</p>
+<p>Для того, чтобы класс <strong>PlayingCard</strong> использовал этот индекс в сравнениях, нужно добавить в него поле <strong>sort_index</strong>. Значение этого поля должно автоматически вычисляться из значений полей <strong>rank</strong> и <strong>suit</strong>. Для этого прекрасно подходит метод <strong>__post_init__()</strong>, который позволяет добавить дополнительную обработку после вызова метода <strong>__init__()</strong>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 
@@ -816,7 +816,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 
 <h1 id="Неизменяемые-классы-данных">Неизменяемые классы данных</h1>
 
-<p>Одной из основных особенностей именованных кортежей, которые были показаны ранее, является их неизменяемость. То есть, нельзя присвоить значения полям объекта повторно. Зачастую это является крайне полезным свойством. Чтобы наделить класс данных свойством неизменяемости, нужно при создании установить параметр <em>frozen=True</em>:</p>
+<p>Одной из основных особенностей именованных кортежей, которые были показаны ранее, является их неизменяемость. То есть, нельзя присвоить значения полям объекта повторно. Зачастую это является крайне полезным свойством. Чтобы наделить класс данных свойством неизменяемости, нужно при создании установить параметр <strong>frozen=True</strong>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
@@ -836,7 +836,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <span class="n">dataclasses</span><span class="o">.</span><span class="n">FrozenInstanceError</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">assign</span> <span class="n">to</span> <span class="n">field</span> <span class="s">'name'</span>
 </code></pre></div></div>
 
-<p>Однако, следует помнить, что если класс данных содержит в качестве значения поля изменяемую структуру, то она в любом случае может изменяться. Это справедливо для всех вложенных структур данных в <em>Python</em>:</p>
+<p>Однако, следует помнить, что если класс данных содержит в качестве значения поля изменяемую структуру, то она в любом случае может изменяться. Это справедливо для всех вложенных структур данных в <strong>Python</strong>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
@@ -851,7 +851,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
     <span class="n">cards</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PlayingCard</span><span class="p">]</span>
 </code></pre></div></div>
 
-<p>Классы <em>ImmutableCard</em> и <em>ImmutableDeck</em> неизменяемые, а поле <em>cards</em> является списком, изменямой структурой данных:</p>
+<p>Классы <strong>ImmutableCard</strong> и <strong>ImmutableDeck</strong> неизменяемые, а поле <strong>cards</strong> является списком, изменяемой структурой данных:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">queen_of_hearts</span> <span class="o">=</span> <span class="n">ImmutableCard</span><span class="p">(</span><span class="s">'Q'</span><span class="p">,</span> <span class="s">'♡'</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">ace_of_spades</span> <span class="o">=</span> <span class="n">ImmutableCard</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'♠'</span><span class="p">)</span>
@@ -863,11 +863,11 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <span class="n">ImmutableDeck</span><span class="p">(</span><span class="n">cards</span><span class="o">=</span><span class="p">[</span><span class="n">ImmutableCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'7'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♢'</span><span class="p">),</span> <span class="n">ImmutableCard</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s">'A'</span><span class="p">,</span> <span class="n">suit</span><span class="o">=</span><span class="s">'♠'</span><span class="p">)])</span>
 </code></pre></div></div>
 
-<p>Чтобы избегать таких случаев, нужно обязательно использовать для полей класса, который предполагается неизменяемым, неизменяемые типы данных. Для класса <em>ImmutableDeck</em> следовало бы использовать кортеж вместо списка.</p>
+<p>Чтобы избегать таких случаев, нужно обязательно использовать для полей класса, который предполагается неизменяемым, неизменяемые типы данных. Для класса <strong>ImmutableDeck</strong> следовало бы использовать кортеж вместо списка.</p>
 
 <h1 id="Наследование">Наследование</h1>
 
-<p>Как и обычные классы, классы данных можно наследовать. Для примера, расширим класс <em>Position</em> полем <em>country</em> и будем использовать его для представления столиц стран:</p>
+<p>Как и обычные классы, классы данных можно наследовать. Для примера, расширим класс <strong>Position</strong> полем <strong>country</strong> и будем использовать его для представления столиц стран:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
@@ -888,7 +888,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 <span class="n">Capital</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Oslo'</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">10.8</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">59.9</span><span class="p">,</span> <span class="n">country</span><span class="o">=</span><span class="s">'Norway'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Поле <em>country</em> класса <em>Capital</em> добавилось после трех полей базового класса <em>Position</em>. Все становится несколько сложнее, если какие-либо поля класса-родителя содержат значения по-умолчанию:</p>
+<p>Поле <strong>country</strong> класса <strong>Capital</strong> добавилось после трех полей базового класса <strong>Position</strong>. Все становится несколько сложнее, если какие-либо поля класса-родителя содержат значения по умолчанию:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
@@ -903,20 +903,20 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
     <span class="n">country</span><span class="p">:</span> <span class="nb">str</span>  <span class="c"># Не работает</span>
 </code></pre></div></div>
 
-<p>Этот код сразу упадет с ошибкой <em>TypeError</em> и сообщением</p>
+<p>Этот код сразу упадет с ошибкой <strong>TypeError</strong> и сообщением</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"non-default argument 'country' follows default argument"</span>
 </code></pre></div></div>
 
-<p>Проблема заключается в то, что поле <em>country</em> не имеет значения по-умолчанию, в то время как <em>lon</em> и <em>lat</em> их имеют. И класс данных <em>Capital</em> пытается создать метод <em>__init__()</em> с сигнатурой</p>
+<p>Проблема заключается в то, что поле <strong>country</strong> не имеет значения по умолчанию, в то время как <strong>lon</strong> и <strong>lat</strong> их имеют. И класс данных <strong>Capital</strong> пытается создать метод <strong>__init__()</strong> с сигнатурой</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">country</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="o">...</span>
 </code></pre></div></div>
 
-<p>Это не валидный код <strong>Python</strong>. Если параметру задано значение по-умолчанию, то все следующие за ним также должны иметь их. И это справедливо для полей классов данных.</p>
+<p>Это невалидный код <strong>Python</strong>. Если параметру задано значение по умолчанию, то все следующие за ним также должны иметь их. И это справедливо для полей классов данных.</p>
 
-<p>Еще одна вещь, о которой стоит помнить — порядок полей в классе-наследнике. Он совпадает с последовательность полей в классе-родителе. И даже если поле переопределено в подклассе, то порядок не меняется:</p>
+<p>Еще одна вещь, о которой стоит помнить — порядок полей в классе-наследнике. Он совпадает с последовательностью полей в классе-родителе. И даже если поле переопределено в подклассе, то порядок не меняется:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
@@ -932,7 +932,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
     <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">40.0</span>
 </code></pre></div></div>
 
-<p>Порядок полей в классе <strong>Capital</strong> будет <strong>name</strong>, <strong>lon</strong>, <strong>lat</strong>, <strong>country</strong>, однако значение по-умолчанию для поля <strong>lat</strong> будет равным 40.0:</p>
+<p>Порядок полей в классе <strong>Capital</strong> будет <strong>name</strong>, <strong>lon</strong>, <strong>lat</strong>, <strong>country</strong>, однако значение по умолчанию для поля <strong>lat</strong> будет равным 40.0:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">Capital</span><span class="p">(</span><span class="s">'Madrid'</span><span class="p">,</span> <span class="n">country</span><span class="o">=</span><span class="s">'Spain'</span><span class="p">)</span>
 <span class="n">Capital</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Madrid'</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">40.0</span><span class="p">,</span> <span class="n">country</span><span class="o">=</span><span class="s">'Spain'</span><span class="p">)</span>
@@ -958,7 +958,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
     <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span>
 </code></pre></div></div>
 
-<p>По сути, в __slots__ задается перечисление возможных полей или атрибутов класса. Они и только они могут быть в дальнейшем определены. Более того, если класс содержит слоты, то его поля не могут иметь значений по-умолчанию.</p>
+<p>По сути, в <strong>__slots__</strong> задается перечисление возможных полей или атрибутов класса. Они и только они могут быть в дальнейшем определены. Более того, если класс содержит слоты, то его поля не могут иметь значений по умолчанию.</p>
 
 <p>Преимущества таких ограничений состоят в дальнейших оптимизационных улучшениях. Например, классы начинают потреблять меньше памяти, измерить это можно с помощью <strong>pympler</strong>:</p>
 
@@ -982,7 +982,7 @@ Powered by Hydejack v7.5.1 <https://qwtel.com/hydejack/>
 
 <h1 id="Заключение">Заключение</h1>
 
-<p>Классы данных — одна из новых возможностей в <strong>Python 3.7</strong>. Они позволяют избавиться от написания шаблонного кода инициализации, представления и сравнения. В этой статье мы увидели, как определять свои классы данных, как задавать значения по-умолчанию для полей, рассмотрели свойство неизменяемости и процедуру наследования. Если вы ходите более основательно погрузиться во все детали классов данных, то загляните в <a href="https://www.python.org/dev/peps/pep-0557/" rel="nofollow" target="_blank">PEP 557</a> и в обсуждения на <a href="https://github.com/ericvsmith/dataclasses/issues?utf8=✓&amp;q=" rel="nofollow" target="_blank">GitHub</a>.</p>
+<p>Классы данных — одна из новых возможностей в <strong>Python 3.7</strong>. Они позволяют избавиться от написания шаблонного кода инициализации, представления и сравнения. В этой статье мы увидели, как определять свои классы данных, как задавать значения по умолчанию для полей, рассмотрели свойство неизменяемости и процедуру наследования. Если вы ходите более основательно погрузиться во все детали классов данных, то загляните в <a href="https://www.python.org/dev/peps/pep-0557/" rel="nofollow" target="_blank">PEP 557</a> и в обсуждения на <a href="https://github.com/ericvsmith/dataclasses/issues?utf8=✓&amp;q=" rel="nofollow" target="_blank">GitHub</a>.</p>
 
   
 </article>

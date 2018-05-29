@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru-RU"><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ru-RU" /><updated>2018-05-29T08:56:25+03:00</updated><id>http://localhost:4000/</id><title type="html">shipovdenis</title><subtitle>A Jekyll theme with JavaScript powers. &quot;Best Theme by a Mile&quot;. Combines the best of static sites and modern web apps. Open `_config.yml` to edit this text.
-</subtitle><author><name>Denis Shipov</name><email>info@shipovdenis.com</email></author><entry><title type="html">Классы данных в Python</title><link href="http://localhost:4000/blog/python-dataclass" rel="alternate" type="text/html" title="Классы данных в Python" /><published>2018-05-20T00:00:00+03:00</published><updated>2018-05-20T00:00:00+03:00</updated><id>http://localhost:4000/blog/data-class-in-python</id><content type="html" xml:base="http://localhost:4000/blog/python-dataclass">&lt;p&gt;Одной из интересных особенностей, появившихся в &lt;strong&gt;Python&lt;/strong&gt; с версии &lt;strong&gt;3.7&lt;/strong&gt;, является &lt;strong&gt;класс данных&lt;/strong&gt;(&lt;strong&gt;data class&lt;/strong&gt;). &lt;strong&gt;Класс данных&lt;/strong&gt; — это класс, как правило содержащий только данные, но в действительности нет никаких ограничений. Он создается с помощью нового декоратора &lt;strong&gt;@dataclass&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru-RU"><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ru-RU" /><updated>2018-05-30T00:12:25+03:00</updated><id>http://localhost:4000/</id><title type="html">shipovdenis</title><subtitle>A Jekyll theme with JavaScript powers. &quot;Best Theme by a Mile&quot;. Combines the best of static sites and modern web apps. Open `_config.yml` to edit this text.
+</subtitle><author><name>Denis Shipov</name><email>info@shipovdenis.com</email></author><entry><title type="html">Классы данных в Python</title><link href="http://localhost:4000/blog/python-dataclass" rel="alternate" type="text/html" title="Классы данных в Python" /><published>2018-05-20T00:00:00+03:00</published><updated>2018-05-20T00:00:00+03:00</updated><id>http://localhost:4000/blog/data-class-in-python</id><content type="html" xml:base="http://localhost:4000/blog/python-dataclass">&lt;p&gt;Одной из интересных особенностей, появившихся в &lt;strong&gt;Python&lt;/strong&gt; с версии &lt;strong&gt;3.7&lt;/strong&gt;, является &lt;strong&gt;класс данных&lt;/strong&gt; (&lt;strong&gt;data class&lt;/strong&gt;). Это класс, как правило, просто представляющий некоторую структуру данных, но в действительности никакие функциональные ограничения не накладываются. Он создается с помощью нового декоратора &lt;strong&gt;@dataclass&lt;/strong&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;
 
@@ -44,7 +44,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Понятно, что декоратор &lt;strong&gt;@dataclass&lt;/strong&gt; выполняет определенные действия “за кулисами”.
-&lt;strong&gt;Класс данных&lt;/strong&gt; уже реализует метод &lt;strong&gt;__repr__()&lt;/strong&gt; для обеспечения хорошего строкого представления и метод &lt;strong&gt;__eq__()&lt;/strong&gt;, который выполняет базовые сравнения объектов. Чтобы класс &lt;strong&gt;RegularCard&lt;/strong&gt; обладал схожей функциональностью, нужно добавить это методы явно:&lt;/p&gt;
+&lt;strong&gt;Класс данных&lt;/strong&gt; уже реализует метод &lt;strong&gt;__repr__()&lt;/strong&gt; для обеспечения хорошего строкового представления и метод &lt;strong&gt;__eq__()&lt;/strong&gt;, который выполняет базовые сравнения объектов. Чтобы класс &lt;strong&gt;RegularCard&lt;/strong&gt; обладал схожей функциональностью, нужно добавить это методы явно:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RegularCard&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
@@ -70,7 +70,7 @@
   &lt;li&gt;Как работает наследование в &lt;strong&gt;классах данных&lt;/strong&gt;?&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Скоро мы погрузимся в эти особенности новой функциональности &lt;strong&gt;Python&lt;/strong&gt;. Однако, вам может показаться, что вы уже видели что-то подобное раньше.&lt;/p&gt;
+&lt;p&gt;Скоро мы погрузимся в эти особенности новой функциональности &lt;strong&gt;Python&lt;/strong&gt;. Однако, вам может показаться, что вы уже видели что-то подобное ранее.&lt;/p&gt;
 
 &lt;h1 id=&quot;Существующие-альтернативы-классам-данных&quot;&gt;Существующие альтернативы классам данных&lt;/h1&gt;
 
@@ -88,7 +88,7 @@
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Для &lt;strong&gt;queen_of_hearts_tuple&lt;/strong&gt; нужно помнить порядок следования атрибутов. 
-Написав &lt;strong&gt;queen_of_hearts_tuple = (‘Hearts’, ‘Q’)&lt;/strong&gt; мы явно получим не то, что хотели, однако сообщение об ошибке не возникнет.&lt;/p&gt;
+Написав &lt;strong&gt;queen_of_hearts_tuple = (‘Hearts’, ‘Q’)&lt;/strong&gt; мы явно получим не то что хотели, однако сообщение об ошибке не возникнет.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;При использовании словарей нужно следить за согласованностью имен атрибутов. Например, &lt;strong&gt;queen_of_hearts_dict = {‘value’: ‘A’, ‘suit’: ‘Spades’}&lt;/strong&gt; не будет работать должным образом, так как впоследствии мы ожидаем поле &lt;strong&gt;rank&lt;/strong&gt;, а не &lt;strong&gt;value&lt;/strong&gt;.&lt;/p&gt;
@@ -103,7 +103,7 @@
 &lt;span class=&quot;s&quot;&gt;'Hearts'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Лучшей альтернативой является использование &lt;strong&gt;именованных кортежей&lt;/strong&gt;(&lt;strong&gt;namedtuple&lt;/strong&gt;). Этот подход широко используется для создания небольших читаемых структур данных. Класс выше с использованием &lt;strong&gt;namedtuple&lt;/strong&gt; создается следующим образом:&lt;/p&gt;
+&lt;p&gt;Лучшей альтернативой является использование &lt;strong&gt;именованных кортежей&lt;/strong&gt; (&lt;strong&gt;namedtuple&lt;/strong&gt;). Этот подход широко используется для создания небольших читаемых структур данных. Класс выше с использованием &lt;strong&gt;namedtuple&lt;/strong&gt; создается следующим образом:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;collections&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;namedtuple&lt;/span&gt;
 
@@ -121,7 +121,7 @@
 &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Так зачем тогда вообще возиться с классами данных? Во первых, классы данных имеют более широкие возможности, чем были продемонстрированы на данный момент. В тоже время &lt;strong&gt;namedtuple&lt;/strong&gt; обладает и другими особенностями, которые не всегда желательны. По своей структуре &lt;strong&gt;namedtuple&lt;/strong&gt; является обычным кортежом. Это можно увидеть в сравнении:&lt;/p&gt;
+&lt;p&gt;Так зачем тогда вообще возиться с классами данных? Во первых, классы данных имеют более широкие возможности, чем были продемонстрированы на данный момент. В то же время &lt;strong&gt;namedtuple&lt;/strong&gt; обладает и другими особенностями, которые не всегда желательны. По своей структуре &lt;strong&gt;namedtuple&lt;/strong&gt; является обычным кортежем. Это можно увидеть в сравнении:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queen_of_hearts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Q'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Hearts'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
@@ -135,7 +135,7 @@
 &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;В именнованных кортежах сложно определять значения по-умолчанию, и по своей природе они являются неизменяемыми структурами данных, что в одних случаях просто превосходно, но в других сказывается недостаток гибкости:&lt;/p&gt;
+&lt;p&gt;В именованных кортежах сложно определять значения по умолчанию, и по своей природе они являются неизменяемыми структурами данных, что в одних случаях просто превосходно, но в других сказывается недостаток гибкости:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;card&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NamedTupleCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'7'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Diamonds'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;card&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'9'&lt;/span&gt;
@@ -159,7 +159,7 @@
     &lt;span class=&quot;n&quot;&gt;suit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Библиотека &lt;strong&gt;attrs&lt;/strong&gt; содержит функциональность, которой не обладают классы данных, например, валидаторы и конвертеры. Более того, &lt;strong&gt;attrs&lt;/strong&gt; поддерживает Python 2.7 и Python 3.4 и выше. Но все-таки это не часть стандартной библиотеки и придется добавлять лишнюю зависимость в проект.&lt;/p&gt;
+&lt;p&gt;Библиотека &lt;strong&gt;attrs&lt;/strong&gt; содержит функциональность, которой не обладают классы данных, например, валидаторы и конвертеры. Более того, &lt;strong&gt;attrs&lt;/strong&gt; поддерживает &lt;strong&gt;Python 2.7&lt;/strong&gt; и &lt;strong&gt;Python 3.4&lt;/strong&gt; и выше. Но все-таки это не часть стандартной библиотеки и придется добавлять лишнюю зависимость в проект.&lt;/p&gt;
 
 &lt;p&gt;Помимо обычных и именованных кортежей, словарей и &lt;strong&gt;attrs&lt;/strong&gt; существует множество других средств, предоставляющих схожую функциональность, например, &lt;strong&gt;typing.NamedTuple&lt;/strong&gt;, &lt;strong&gt;namedlist&lt;/strong&gt;, &lt;strong&gt;attrdict&lt;/strong&gt;, &lt;strong&gt;plumber&lt;/strong&gt;, &lt;strong&gt;fields&lt;/strong&gt;. И нужно смотреть в каждом конкретном случае, какой из них подойдет лучше всего для стоящей задачи.&lt;/p&gt;
 
@@ -189,18 +189,18 @@
 &lt;span class=&quot;n&quot;&gt;Oslo&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;59.9&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;°&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;10.8&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;°&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Также можно создать класс данных подобно тому, как создаются именнованные кортежи. Следующий код равносилен определению класса &lt;strong&gt;Position&lt;/strong&gt; выше:&lt;/p&gt;
+&lt;p&gt;Также можно создать класс данных подобно тому, как создаются именованные кортежи. Следующий код равносилен определению класса &lt;strong&gt;Position&lt;/strong&gt; выше:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;make_dataclass&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;Position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;make_dataclass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Position'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'lat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'lon'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Класс данных — это обычный класс &lt;strong&gt;Python&lt;/strong&gt;. Единственным отличием является набор уже реализованных методов, таких как &lt;strong&gt;.__init&lt;/strong&gt;()&lt;strong&gt;, __.__repr&lt;/strong&gt;()&lt;strong&gt;, and __.__eq&lt;/strong&gt;()__.&lt;/p&gt;
+&lt;p&gt;Класс данных — это обычный класс &lt;strong&gt;Python&lt;/strong&gt;. Единственным отличием является набор уже реализованных методов, таких как &lt;strong&gt;__init__()&lt;/strong&gt;, &lt;strong&gt;__repr__()&lt;/strong&gt; и &lt;strong&gt;__eq__()&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;Значения-по-умолчанию&quot;&gt;Значения по-умолчанию&lt;/h2&gt;
+&lt;h2 id=&quot;Значения-по-умолчанию&quot;&gt;Значения по умолчанию&lt;/h2&gt;
 
-&lt;p&gt;Очень просто добавить значения по-умолчанию для полей класса данных:&lt;/p&gt;
+&lt;p&gt;Очень просто добавить значения по умолчанию для полей класса данных:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;
 
@@ -221,7 +221,7 @@
 &lt;span class=&quot;n&quot;&gt;Position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Vancouver'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;123.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;49.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Немного позднее мы узнаем о &lt;strong&gt;default_factory&lt;/strong&gt;, что позволит определять более сложные значения по-умолчанию.&lt;/p&gt;
+&lt;p&gt;Немного позднее мы узнаем о &lt;strong&gt;default_factory&lt;/strong&gt;, что позволит определять более сложные значения по умолчанию.&lt;/p&gt;
 
 &lt;h2 id=&quot;Определение-типа-type-hints&quot;&gt;Определение типа (Type Hints)&lt;/h2&gt;
 
@@ -248,7 +248,7 @@
 
 &lt;h2 id=&quot;Добавление-методов&quot;&gt;Добавление методов&lt;/h2&gt;
 
-&lt;p&gt;Методы в классы данных добавляются так же, как и в обычные классы. Для примера вычислим расстояние между двумя точками на планете с помощью формулы гаверсинусов. Добавим метод &lt;strong&gt;.distance_to()&lt;/strong&gt; в класс:&lt;/p&gt;
+&lt;p&gt;Методы в классы данных добавляются так же, как и в обычные классы. Для примера вычислим расстояние между двумя точками на планете с помощью формулы гаверсинусов. Добавим метод &lt;strong&gt;distance_to()&lt;/strong&gt; в класс:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;math&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;asin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;radians&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;
@@ -276,7 +276,7 @@
 &lt;span class=&quot;mf&quot;&gt;7181.7841229421165&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h1 id=&quot;Гибкие-классы-данных&quot;&gt;Гибкие классы данных&lt;/h1&gt;
+&lt;h1 id=&quot;Добавляем-гибкости-в-классы-данных&quot;&gt;Добавляем гибкости в классы данных&lt;/h1&gt;
 
 &lt;p&gt;На данный момент мы рассмотрели базовые возможности классов данных. Теперь посмотрим на более продвинутые возможности, такие как параметры декоратора &lt;strong&gt;@dataclass&lt;/strong&gt; и функцию &lt;strong&gt;field()&lt;/strong&gt;. Вместе они предоставляют больше контроля при создании классов данных.&lt;/p&gt;
 
@@ -304,9 +304,9 @@
             &lt;span class=&quot;n&quot;&gt;PlayingCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Spades'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)])&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;Расширенные-значения-по-умолчанию&quot;&gt;Расширенные значения по-умолчанию&lt;/h2&gt;
+&lt;h2 id=&quot;Расширенные-значения-по-умолчанию&quot;&gt;Расширенные значения по умолчанию&lt;/h2&gt;
 
-&lt;p&gt;Теперь нам нужно определить значения по-умолчанию для класса &lt;strong&gt;Deck&lt;/strong&gt;. Было бы удобно, если бы вызов &lt;strong&gt;Deck()&lt;/strong&gt; создавал обычную колоду из 52 игральных карт. Для начала определим масти и ранги карт. Затем добавим функцию &lt;strong&gt;make_french_deck()&lt;/strong&gt;, которая создаст список экземпляров класса &lt;strong&gt;PlayingCard&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Теперь нам нужно определить значения по умолчанию для класса &lt;strong&gt;Deck&lt;/strong&gt;. Было бы удобно, если бы вызов &lt;strong&gt;Deck()&lt;/strong&gt; создавал обычную колоду из 52 игральных карт. Для начала определим масти и ранги карт. Затем добавим функцию &lt;strong&gt;make_french_deck()&lt;/strong&gt;, которая создаст список экземпляров класса &lt;strong&gt;PlayingCard&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;RANKS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'2 3 4 5 6 7 8 9 10 J Q K A'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;SUITS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'♣ ♢ ♡ ♠'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -322,7 +322,7 @@
  &lt;span class=&quot;n&quot;&gt;PlayingCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'K'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'♠'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PlayingCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'♠'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Теоретически теперь можно использовать эту функцию, чтобы определить значение по-умолчению для &lt;strong&gt;Deck.cards&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Теоретически теперь можно использовать эту функцию, чтобы определить значение по умолчанию для &lt;strong&gt;Deck.cards&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;typing&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;
@@ -332,9 +332,9 @@
     &lt;span class=&quot;n&quot;&gt;cards&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PlayingCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;make_french_deck&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;strong&gt;Не делайте так!&lt;/strong&gt; Это один из наиболее распространенных анти-паттернов в &lt;strong&gt;Python&lt;/strong&gt; — использование изменяемых значений по-умолчанию. Проблема в том, что все экземпляры класса &lt;strong&gt;Deck&lt;/strong&gt; будут использовать один и тот же список значений как значение для поля &lt;strong&gt;cards&lt;/strong&gt;. Это значит, что если карта была удалена из одной колоды, то она также будет удалена из всех существующих колод. В действительности, классы данных огорождают от этого, и код выше вызовет исключение &lt;strong&gt;ValueError&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Не делайте так!&lt;/strong&gt; Это один из наиболее распространенных анти-паттернов в &lt;strong&gt;Python&lt;/strong&gt; — использование изменяемых значений по-умолчанию. Проблема в том, что все экземпляры класса &lt;strong&gt;Deck&lt;/strong&gt; будут использовать один и тот же список значений как значение для поля &lt;strong&gt;cards&lt;/strong&gt;. Это значит, что если карта была удалена из одной колоды, то она также будет удалена из всех существующих колод. В действительности, классы данных ограждают от этого, и код выше вызовет исключение &lt;strong&gt;ValueError&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;Вместо этого классы данных используют &lt;strong&gt;default_factory&lt;/strong&gt; для обработки изменяемых значений по-умолчанию. Для использования &lt;strong&gt;default_factory&lt;/strong&gt; нужно прибегнуть к спецификатору &lt;strong&gt;field()&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Вместо этого классы данных используют &lt;strong&gt;default_factory&lt;/strong&gt; для обработки изменяемых значений по умолчанию. Для использования &lt;strong&gt;default_factory&lt;/strong&gt; нужно прибегнуть к спецификатору &lt;strong&gt;field()&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;typing&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;
@@ -354,16 +354,16 @@
 &lt;p&gt;Спецификатор &lt;strong&gt;field()&lt;/strong&gt; используется для настройки каждого поля класса данных в отдельности (мы увидим примеры этого ниже) и поддерживает:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;default&lt;/strong&gt;: Значение по-умолчанию для поля&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;default&lt;/strong&gt;: Значение по умолчанию для поля&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;default_factory&lt;/strong&gt;: Функция, возвращающая начальное значение для поля&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;init&lt;/strong&gt;: Указание использовать поле в методе &lt;strong&gt;.__init&lt;/strong&gt;()__ (по-умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;repr&lt;/strong&gt;: Указание использовать поле в функции &lt;strong&gt;repr&lt;/strong&gt; (по-умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;compare&lt;/strong&gt;: Указание включать поле в сравнения (по-умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;hash&lt;/strong&gt;: Указание включать поле, когда вычисляется &lt;strong&gt;hash()&lt;/strong&gt; (по-умолчанию, совпадает с &lt;strong&gt;compare&lt;/strong&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;init&lt;/strong&gt;: Указание использовать поле в методе &lt;strong&gt;__init__()&lt;/strong&gt; (по умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;repr&lt;/strong&gt;: Указание использовать поле в функции &lt;strong&gt;repr&lt;/strong&gt; (по умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;compare&lt;/strong&gt;: Указание включать поле в сравнения (по умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;hash&lt;/strong&gt;: Указание включать поле, когда вычисляется &lt;strong&gt;hash()&lt;/strong&gt; (по умолчанию, совпадает с &lt;strong&gt;compare&lt;/strong&gt;)&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;metadata&lt;/strong&gt;: Отображение информации о поле&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;В примере класса &lt;strong&gt;Position&lt;/strong&gt; мы увидели, как добавлять простые значения по-умолчанию с помощью конструкции:&lt;/p&gt;
+&lt;p&gt;В примере класса &lt;strong&gt;Position&lt;/strong&gt; мы увидели, как добавлять простые значения по умолчанию с помощью конструкции:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;__lat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -414,11 +414,11 @@
     &lt;p&gt;&lt;strong&gt;repr(obj)&lt;/strong&gt; определяется с помощью &lt;strong&gt;obj.__repr__()&lt;/strong&gt; и возвращает представление &lt;strong&gt;obj&lt;/strong&gt; для разработчика. Классы данных уже реализуют это.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;str(obj)&lt;/strong&gt; определяется с помощью &lt;strong&gt;obj.__str__()&lt;/strong&gt; и возвращает представление &lt;strong&gt;obj&lt;/strong&gt; для пользователя. Классы данных не реализуют метод &lt;strong&gt;.__str__()&lt;/strong&gt;, поэтому будет вызван метод &lt;strong&gt;.__repr__()&lt;/strong&gt;.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;str(obj)&lt;/strong&gt; определяется с помощью &lt;strong&gt;obj.__str__()&lt;/strong&gt; и возвращает представление &lt;strong&gt;obj&lt;/strong&gt; для пользователя. Классы данных не реализуют метод &lt;strong&gt;__str__()&lt;/strong&gt;, поэтому будет вызван метод &lt;strong&gt;__repr__()&lt;/strong&gt;.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Реализуем удобное для пользователя представление класса PlayingCard:&lt;/p&gt;
+&lt;p&gt;Реализуем удобное для пользователя представление класса &lt;strong&gt;PlayingCard&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;
 
@@ -443,7 +443,7 @@
             &lt;span class=&quot;n&quot;&gt;PlayingCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'K'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'♠'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PlayingCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'♠'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)])&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Для демонстрации добавления собственного метода &lt;strong&gt;.__repr__()&lt;/strong&gt; отойдем от принципа, что этот метод должен возвращать код для воссоздания объекта. Практичность важнее. Добавим более лаконичное представление класса &lt;strong&gt;Deck&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Для демонстрации добавления собственного метода &lt;strong&gt;__repr__()&lt;/strong&gt; отойдем от принципа, что этот метод должен возвращать код для воссоздания объекта. Практичность важнее. Добавим более лаконичное представление класса &lt;strong&gt;Deck&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;typing&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;
@@ -492,12 +492,12 @@
 &lt;p&gt;Декоратор &lt;strong&gt;@dataclass&lt;/strong&gt; имеет две формы. До этого момента мы видели его простую форму, где не было никаких скобок и параметров. Однако в декоратор можно передать следующие параметры:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;init&lt;/strong&gt;: Указание добавлять метод &lt;strong&gt;.__init__()&lt;/strong&gt; (по-умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;repr&lt;/strong&gt;: Указание добавлять метод &lt;strong&gt;.__repr__()&lt;/strong&gt; (по-умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;eq&lt;/strong&gt;: Указание добавлять метод &lt;strong&gt;.__eq__()&lt;/strong&gt; (по-умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;order&lt;/strong&gt;: Указание добавлять методы упорядочивания (по-умолчанию, &lt;strong&gt;False&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;unsafe_hash&lt;/strong&gt;: Указание принудительно добавлять метод .&lt;strong&gt;hash&lt;/strong&gt;() (по-умолчанию, &lt;strong&gt;False&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;frozen&lt;/strong&gt;: Если &lt;strong&gt;True&lt;/strong&gt;, то попытка присвоения значений полям класса вызовет исключение. (по-умолчанию, &lt;strong&gt;False&lt;/strong&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;init&lt;/strong&gt;: Указание добавлять метод &lt;strong&gt;__init__()&lt;/strong&gt; (по умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;repr&lt;/strong&gt;: Указание добавлять метод &lt;strong&gt;__repr__()&lt;/strong&gt; (по умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;eq&lt;/strong&gt;: Указание добавлять метод &lt;strong&gt;__eq__()&lt;/strong&gt; (по умолчанию, &lt;strong&gt;True&lt;/strong&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;order&lt;/strong&gt;: Указание добавлять методы упорядочивания (по умолчанию, &lt;strong&gt;False&lt;/strong&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;unsafe_hash&lt;/strong&gt;: Указание принудительно добавлять метод &lt;strong&gt;hash&lt;/strong&gt;() (по умолчанию, &lt;strong&gt;False&lt;/strong&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;frozen&lt;/strong&gt;: Если &lt;strong&gt;True&lt;/strong&gt;, то попытка присвоения значений полям класса вызовет исключение. (по умолчанию, &lt;strong&gt;False&lt;/strong&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;После передачи параметра &lt;strong&gt;order=True&lt;/strong&gt;, экземпляры класса &lt;strong&gt;PlayingCard&lt;/strong&gt; можно сравнить:&lt;/p&gt;
@@ -525,7 +525,7 @@
 &lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Для того, чтобы класс &lt;strong&gt;PlayingCard&lt;/strong&gt; использовал этот индекс в сравнениях, нужно добавить в него поле &lt;strong&gt;sort_index&lt;/strong&gt;. Значение этого поля должно автоматически расчитывается из значений полей &lt;strong&gt;rank&lt;/strong&gt; и &lt;strong&gt;suit&lt;/strong&gt;. Для этого прекрасно подходит метод &lt;strong&gt;__post_init__()&lt;/strong&gt;, который позволяет добавить дополнительную обработку после вызова метода &lt;strong&gt;__init__()&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Для того, чтобы класс &lt;strong&gt;PlayingCard&lt;/strong&gt; использовал этот индекс в сравнениях, нужно добавить в него поле &lt;strong&gt;sort_index&lt;/strong&gt;. Значение этого поля должно автоматически вычисляться из значений полей &lt;strong&gt;rank&lt;/strong&gt; и &lt;strong&gt;suit&lt;/strong&gt;. Для этого прекрасно подходит метод &lt;strong&gt;__post_init__()&lt;/strong&gt;, который позволяет добавить дополнительную обработку после вызова метода &lt;strong&gt;__init__()&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt;
 
@@ -574,7 +574,7 @@
 
 &lt;h1 id=&quot;Неизменяемые-классы-данных&quot;&gt;Неизменяемые классы данных&lt;/h1&gt;
 
-&lt;p&gt;Одной из основных особенностей именованных кортежей, которые были показаны ранее, является их неизменяемость. То есть, нельзя присвоить значения полям объекта повторно. Зачастую это является крайне полезным свойством. Чтобы наделить класс данных свойством неизменяемости, нужно при создании установить параметр &lt;em&gt;frozen=True&lt;/em&gt;:&lt;/p&gt;
+&lt;p&gt;Одной из основных особенностей именованных кортежей, которые были показаны ранее, является их неизменяемость. То есть, нельзя присвоить значения полям объекта повторно. Зачастую это является крайне полезным свойством. Чтобы наделить класс данных свойством неизменяемости, нужно при создании установить параметр &lt;strong&gt;frozen=True&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;
 
@@ -594,7 +594,7 @@
 &lt;span class=&quot;n&quot;&gt;dataclasses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FrozenInstanceError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cannot&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assign&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'name'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Однако, следует помнить, что если класс данных содержит в качестве значения поля изменяемую структуру, то она в любом случае может изменяться. Это справедливо для всех вложенных структур данных в &lt;em&gt;Python&lt;/em&gt;:&lt;/p&gt;
+&lt;p&gt;Однако, следует помнить, что если класс данных содержит в качестве значения поля изменяемую структуру, то она в любом случае может изменяться. Это справедливо для всех вложенных структур данных в &lt;strong&gt;Python&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;typing&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;
@@ -609,7 +609,7 @@
     &lt;span class=&quot;n&quot;&gt;cards&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PlayingCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Классы &lt;em&gt;ImmutableCard&lt;/em&gt; и &lt;em&gt;ImmutableDeck&lt;/em&gt; неизменяемые, а поле &lt;em&gt;cards&lt;/em&gt; является списком, изменямой структурой данных:&lt;/p&gt;
+&lt;p&gt;Классы &lt;strong&gt;ImmutableCard&lt;/strong&gt; и &lt;strong&gt;ImmutableDeck&lt;/strong&gt; неизменяемые, а поле &lt;strong&gt;cards&lt;/strong&gt; является списком, изменяемой структурой данных:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queen_of_hearts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ImmutableCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Q'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'♡'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ace_of_spades&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ImmutableCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'♠'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -621,11 +621,11 @@
 &lt;span class=&quot;n&quot;&gt;ImmutableDeck&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cards&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ImmutableCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'7'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'♢'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ImmutableCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'♠'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)])&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Чтобы избегать таких случаев, нужно обязательно использовать для полей класса, который предполагается неизменяемым, неизменяемые типы данных. Для класса &lt;em&gt;ImmutableDeck&lt;/em&gt; следовало бы использовать кортеж вместо списка.&lt;/p&gt;
+&lt;p&gt;Чтобы избегать таких случаев, нужно обязательно использовать для полей класса, который предполагается неизменяемым, неизменяемые типы данных. Для класса &lt;strong&gt;ImmutableDeck&lt;/strong&gt; следовало бы использовать кортеж вместо списка.&lt;/p&gt;
 
 &lt;h1 id=&quot;Наследование&quot;&gt;Наследование&lt;/h1&gt;
 
-&lt;p&gt;Как и обычные классы, классы данных можно наследовать. Для примера, расширим класс &lt;em&gt;Position&lt;/em&gt; полем &lt;em&gt;country&lt;/em&gt; и будем использовать его для представления столиц стран:&lt;/p&gt;
+&lt;p&gt;Как и обычные классы, классы данных можно наследовать. Для примера, расширим класс &lt;strong&gt;Position&lt;/strong&gt; полем &lt;strong&gt;country&lt;/strong&gt; и будем использовать его для представления столиц стран:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;
 
@@ -646,7 +646,7 @@
 &lt;span class=&quot;n&quot;&gt;Capital&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Oslo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;10.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;59.9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Norway'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Поле &lt;em&gt;country&lt;/em&gt; класса &lt;em&gt;Capital&lt;/em&gt; добавилось после трех полей базового класса &lt;em&gt;Position&lt;/em&gt;. Все становится несколько сложнее, если какие-либо поля класса-родителя содержат значения по-умолчанию:&lt;/p&gt;
+&lt;p&gt;Поле &lt;strong&gt;country&lt;/strong&gt; класса &lt;strong&gt;Capital&lt;/strong&gt; добавилось после трех полей базового класса &lt;strong&gt;Position&lt;/strong&gt;. Все становится несколько сложнее, если какие-либо поля класса-родителя содержат значения по умолчанию:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;
 
@@ -661,20 +661,20 @@
     &lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# Не работает&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Этот код сразу упадет с ошибкой &lt;em&gt;TypeError&lt;/em&gt; и сообщением&lt;/p&gt;
+&lt;p&gt;Этот код сразу упадет с ошибкой &lt;strong&gt;TypeError&lt;/strong&gt; и сообщением&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;&quot;non-default argument 'country' follows default argument&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Проблема заключается в то, что поле &lt;em&gt;country&lt;/em&gt; не имеет значения по-умолчанию, в то время как &lt;em&gt;lon&lt;/em&gt; и &lt;em&gt;lat&lt;/em&gt; их имеют. И класс данных &lt;em&gt;Capital&lt;/em&gt; пытается создать метод &lt;em&gt;__init__()&lt;/em&gt; с сигнатурой&lt;/p&gt;
+&lt;p&gt;Проблема заключается в то, что поле &lt;strong&gt;country&lt;/strong&gt; не имеет значения по умолчанию, в то время как &lt;strong&gt;lon&lt;/strong&gt; и &lt;strong&gt;lat&lt;/strong&gt; их имеют. И класс данных &lt;strong&gt;Capital&lt;/strong&gt; пытается создать метод &lt;strong&gt;__init__()&lt;/strong&gt; с сигнатурой&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Это не валидный код &lt;strong&gt;Python&lt;/strong&gt;. Если параметру задано значение по-умолчанию, то все следующие за ним также должны иметь их. И это справедливо для полей классов данных.&lt;/p&gt;
+&lt;p&gt;Это невалидный код &lt;strong&gt;Python&lt;/strong&gt;. Если параметру задано значение по умолчанию, то все следующие за ним также должны иметь их. И это справедливо для полей классов данных.&lt;/p&gt;
 
-&lt;p&gt;Еще одна вещь, о которой стоит помнить — порядок полей в классе-наследнике. Он совпадает с последовательность полей в классе-родителе. И даже если поле переопределено в подклассе, то порядок не меняется:&lt;/p&gt;
+&lt;p&gt;Еще одна вещь, о которой стоит помнить — порядок полей в классе-наследнике. Он совпадает с последовательностью полей в классе-родителе. И даже если поле переопределено в подклассе, то порядок не меняется:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dataclasses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;
 
@@ -690,7 +690,7 @@
     &lt;span class=&quot;n&quot;&gt;lat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;40.0&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Порядок полей в классе &lt;strong&gt;Capital&lt;/strong&gt; будет &lt;strong&gt;name&lt;/strong&gt;, &lt;strong&gt;lon&lt;/strong&gt;, &lt;strong&gt;lat&lt;/strong&gt;, &lt;strong&gt;country&lt;/strong&gt;, однако значение по-умолчанию для поля &lt;strong&gt;lat&lt;/strong&gt; будет равным 40.0:&lt;/p&gt;
+&lt;p&gt;Порядок полей в классе &lt;strong&gt;Capital&lt;/strong&gt; будет &lt;strong&gt;name&lt;/strong&gt;, &lt;strong&gt;lon&lt;/strong&gt;, &lt;strong&gt;lat&lt;/strong&gt;, &lt;strong&gt;country&lt;/strong&gt;, однако значение по умолчанию для поля &lt;strong&gt;lat&lt;/strong&gt; будет равным 40.0:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Capital&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Madrid'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Spain'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;Capital&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Madrid'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;40.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Spain'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -716,7 +716,7 @@
     &lt;span class=&quot;n&quot;&gt;lat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;По сути, в __slots__ задается перечисление возможных полей или атрибутов класса. Они и только они могут быть в дальнейшем определены. Более того, если класс содержит слоты, то его поля не могут иметь значений по-умолчанию.&lt;/p&gt;
+&lt;p&gt;По сути, в &lt;strong&gt;__slots__&lt;/strong&gt; задается перечисление возможных полей или атрибутов класса. Они и только они могут быть в дальнейшем определены. Более того, если класс содержит слоты, то его поля не могут иметь значений по умолчанию.&lt;/p&gt;
 
 &lt;p&gt;Преимущества таких ограничений состоят в дальнейших оптимизационных улучшениях. Например, классы начинают потреблять меньше памяти, измерить это можно с помощью &lt;strong&gt;pympler&lt;/strong&gt;:&lt;/p&gt;
 
@@ -740,4 +740,4 @@
 
 &lt;h1 id=&quot;Заключение&quot;&gt;Заключение&lt;/h1&gt;
 
-&lt;p&gt;Классы данных — одна из новых возможностей в &lt;strong&gt;Python 3.7&lt;/strong&gt;. Они позволяют избавиться от написания шаблонного кода инициализации, представления и сравнения. В этой статье мы увидели, как определять свои классы данных, как задавать значения по-умолчанию для полей, рассмотрели свойство неизменяемости и процедуру наследования. Если вы ходите более основательно погрузиться во все детали классов данных, то загляните в &lt;a href=&quot;https://www.python.org/dev/peps/pep-0557/&quot; rel=&quot;nofollow&quot; target=&quot;_blank&quot;&gt;PEP 557&lt;/a&gt; и в обсуждения на &lt;a href=&quot;https://github.com/ericvsmith/dataclasses/issues?utf8=✓&amp;amp;q=&quot; rel=&quot;nofollow&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</content><author><name>Denis Shipov</name><email>info@shipovdenis.com</email></author><summary type="html">Одной из интересных особенностей, появившихся в Python с версии 3.7, является класс данных(data class). Класс данных — это класс, как правило содержащий только данные, но в действительности нет никаких ограничений. Он создается с помощью нового декоратора @dataclass</summary></entry></feed>
+&lt;p&gt;Классы данных — одна из новых возможностей в &lt;strong&gt;Python 3.7&lt;/strong&gt;. Они позволяют избавиться от написания шаблонного кода инициализации, представления и сравнения. В этой статье мы увидели, как определять свои классы данных, как задавать значения по умолчанию для полей, рассмотрели свойство неизменяемости и процедуру наследования. Если вы ходите более основательно погрузиться во все детали классов данных, то загляните в &lt;a href=&quot;https://www.python.org/dev/peps/pep-0557/&quot; rel=&quot;nofollow&quot; target=&quot;_blank&quot;&gt;PEP 557&lt;/a&gt; и в обсуждения на &lt;a href=&quot;https://github.com/ericvsmith/dataclasses/issues?utf8=✓&amp;amp;q=&quot; rel=&quot;nofollow&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</content><author><name>Denis Shipov</name><email>info@shipovdenis.com</email></author><summary type="html">Одной из интересных особенностей, появившихся в Python с версии 3.7, является класс данных (data class). Это класс, как правило, просто представляющий некоторую структуру данных, но в действительности никакие функциональные ограничения не накладываются. Он создается с помощью нового декоратора @dataclass</summary></entry></feed>
